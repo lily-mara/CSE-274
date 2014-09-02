@@ -9,13 +9,13 @@
 
 FifoQueue::FifoQueue() {
   // complexity is O(n)
-  for (int i = 0; i < 50; i++) {
+  for (int i = 0; i < sizeof(this->array); i++) {
     this->array[i] = 0;
   }
 }
 
 bool FifoQueue::Enqueue(char item) {
-  for (int i = 0; i < 50; i++) {
+  for (int i = 0; i < sizeof(this->array); i++) {
     if (this->array[i] == 0) {
       this->array[i] = item;
       return true;
@@ -25,5 +25,10 @@ bool FifoQueue::Enqueue(char item) {
 }
 
 char FifoQueue::Dequeue() {
-  return 0;
+  char result = this->array[0];
+  for (int i = 0; i < sizeof(this->array) - 1; i++) {
+    this->array[i] = this->array[i + 1];
+  }
+  this->array[sizeof(this->array) - 1] = 0;
+  return result;
 }
