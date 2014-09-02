@@ -14,5 +14,7 @@ int main() {
   FifoQueue queue;
   queue.Enqueue('a');
   queue.Enqueue('b');
+  cout << queue.Dequeue() << endl;
+  cout << queue.Dequeue() << endl;
 	return 0;
 }
