@@ -28,6 +28,9 @@ char FifoQueue::Dequeue() {
   char result = this->array[0];
   for (int i = 0; i < sizeof(this->array) - 1; i++) {
     this->array[i] = this->array[i + 1];
+    if (this->array[i + 1] == 0) {
+      break;
+    }
   }
   this->array[sizeof(this->array) - 1] = 0;
   return result;
