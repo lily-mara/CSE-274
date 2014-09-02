@@ -14,7 +14,7 @@ private:
 
 public:
   FifoQueue();
-  void Enqueue(char item);
+  bool Enqueue(char item);
   char Dequeue();
 
 };
