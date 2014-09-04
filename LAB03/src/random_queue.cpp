@@ -6,6 +6,7 @@
  */
 
 #include <stdlib.h>
+#include <iostream>
 #include "random_queue.h"
 
 RandomQueue::RandomQueue(){
@@ -33,16 +34,14 @@ bool RandomQueue::Enqueue(char item) {
 
 char RandomQueue::Dequeue() {
   // Complexity is O(n)
+  this->size--;
   int index = rand() % this->size;
   char result = this->array[index];
-  this->size--;
-  for (int i = 0; i < sizeof(this->array) - 1; i++) {
+  for (int i = index; i < this->size - 1; i++) {
     this->array[i] = this->array[i + 1];
-    if (this->array[i + 1]) {
-      break;
-    }
   }
-  this->array[sizeof(this->array)-1] = 0;
+
+  this->array[index] = 0;
   return result;
 }
 
