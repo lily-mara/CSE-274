@@ -7,9 +7,18 @@
 //============================================================================
 
 #include <iostream>
+#include "random_queue.h"
 using namespace std;
 
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+	RandomQueue queue;
+	queue.Enqueue('a');
+	queue.Enqueue('b');
+	queue.Enqueue('c');
+	queue.Enqueue('d');
+	cout << "result: " << queue.Dequeue() << endl << endl;
+	cout << "result: " << queue.Dequeue() << endl << endl;
+	cout << "result: " << queue.Dequeue() << endl << endl;
+
 	return 0;
 }
