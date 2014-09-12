@@ -12,14 +12,29 @@
 template <class T>
 class Trequeue {
 protected:
-  ArrayDeque front;
-  ArrayDeque back;
+  ods::ArrayDeque<T> front;
+  ods::ArrayDeque<T> back;
 public:
+  Trequeue();
+  ~Trequeue();
   int size();
   T get(int);
   T set(int, int);
   void add(int, int);
   T remove(int);
+};
+
+template <class T>
+Trequeue<T>::Trequeue() {
+}
+
+template <class T>
+Trequeue<T>::~Trequeue() {
+}
+
+template <class T>
+int Trequeue<T>::size() {
+  return this->front.size() + this->back.size();
 }
 
 #endif
