@@ -11,16 +11,28 @@
 
 using namespace std;
 
+template <class T>
+void printQueue(Trequeue<T> queue) {
+  cout << "[";
+
+  for (int i = 0; i < queue.size() - 1; i++) {
+	cout << queue.get(i) << ", ";
+  }
+
+  cout << queue.get(queue.size() - 1) << "]" << endl;
+}
+
 int main() {
   Trequeue<int> queue;
-  queue.set(0, 3);
-  queue.set(1, 4);
-  queue.set(2, 8);
-  queue.set(0, 9);
+  queue.add(0, 3);
+  queue.add(1, 4);
+  queue.add(2, 8);
+  queue.add(0, 9);
+  queue.add(0, 10);
+  queue.add(0, 11);
+  queue.add(0, 12);
 
-  cout << queue.size() << endl;
-  cout << queue.front.size() << endl;
+  printQueue(queue);
 
-  queue.front.set(0, 9);
-  cout << queue.front.size() << endl;
+  return 0;
 }
