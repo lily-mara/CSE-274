@@ -12,9 +12,9 @@
 template <class T>
 class Trequeue {
 protected:
+public:
   ods::ArrayDeque<T> front;
   ods::ArrayDeque<T> back;
-public:
   Trequeue();
   ~Trequeue();
   int size();
