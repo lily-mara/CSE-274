@@ -58,7 +58,7 @@ void Trequeue<T>::add(int index, int value) {
 }
 
 template <class T>
-T Trequeue<T>::remove(int index, int value) {
+T Trequeue<T>::remove(int index) {
 
 }
 
