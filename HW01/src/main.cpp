@@ -2,7 +2,7 @@
  * main.cpp
  *
  *  Created on: Sep 8, 2014
- *      Author: Nate
+ *      Author: Nate Mara
  */
 
 #include <iostream>
