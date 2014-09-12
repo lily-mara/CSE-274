@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+#include "trequeue.h"
+
 using namespace std;
 
 int main() {
