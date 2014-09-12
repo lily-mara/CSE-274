@@ -37,4 +37,12 @@ int Trequeue<T>::size() {
   return this->front.size() + this->back.size();
 }
 
+template <class T>
+T get(int index) {
+  if (index > this->front.size()) {
+	return this->back.get(index - this->front.size());
+  }
+  return this->front.get(index);
+}
+
 #endif
