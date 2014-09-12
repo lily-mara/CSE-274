@@ -55,6 +55,11 @@ void Trequeue<T>::set(int index, int value) {
 
 template <class T>
 void Trequeue<T>::add(int index, int value) {
+  if (index > this->front.size()) {
+    this->back.add(index - this->front.size());
+  } else {
+    this->front.add(index);
+  }
 }
 
 template <class T>
