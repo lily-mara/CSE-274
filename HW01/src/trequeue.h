@@ -53,4 +53,13 @@ T Trequeue<T>::set(int index, int value) {
   return this->front.set(index, value);
 }
 
+template <class T>
+void Trequeue<T>::add(int index, int value) {
+}
+
+template <class T>
+T Trequeue<T>::remove(int index, int value) {
+
+}
+
 #endif
