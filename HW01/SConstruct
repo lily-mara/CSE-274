@@ -1,0 +1,7 @@
+import sys
+if 'win' in sys.platform:
+	env = Environment(tools = ['mingw'])
+else:
+	env = Environment()
+
+env.Program('treque_test', Glob('src/*.cpp'))
