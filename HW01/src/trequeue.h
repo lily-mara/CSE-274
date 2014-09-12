@@ -19,7 +19,7 @@ public:
   ~Trequeue();
   int size();
   T get(int);
-  T set(int, int);
+  void set(int, int);
   void add(int, int);
   T remove(int);
 };
@@ -46,7 +46,7 @@ T Trequeue<T>::get(int index) {
 }
 
 template <class T>
-T Trequeue<T>::set(int index, int value) {
+void Trequeue<T>::set(int index, int value) {
   if (index > this->size() / 2) {
 	return this->back.set(index - this->front.size(), value);
   }
