@@ -48,9 +48,9 @@ T Trequeue<T>::get(int index) {
 template <class T>
 void Trequeue<T>::set(int index, int value) {
   if (index > this->size() / 2) {
-    return this->back.set(index - this->front.size(), value);
+    this->back.set(index - this->front.size(), value);
   }
-  return this->front.set(index, value);
+  this->front.set(index, value);
 }
 
 template <class T>
