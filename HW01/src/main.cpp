@@ -8,11 +8,10 @@
 #include <iostream>
 
 #include "trequeue.h"
+#include "main.h"
 
-using namespace std;
-
-template <class T>
-void printQueue(Trequeue<T>&);
+using std::cout;
+using std::endl;
 
 int main() {
   Trequeue<int> queue;
