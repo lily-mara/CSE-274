@@ -6,11 +6,12 @@ else:
 	debug = Environment()
 	release = Environment()
 
-debug.Append(CCFLAGS=['-g'])
+debug.Append(CXXFLAGS=['-g', 'Wall'])
 
-debug.Program('treque_test', Glob('src/*.cpp'))
-release.Program('treque', Glob('src/*.cpp'))
+release_object = release.Object('treque', Glob('src/*.cpp'))
+release_target = release.Program(release_object)
+release.Alias('release', release_target)
 
-release.Alias('release')
-
-Default(debug)
+debug_object = release.Object('treque-dbg', Glob('src/*.cpp'))
+debug_target = debug.Program(debug_object)
+debug.Default(debug_target)
