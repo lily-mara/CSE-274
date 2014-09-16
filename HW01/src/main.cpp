@@ -12,7 +12,7 @@
 using namespace std;
 
 template <class T>
-void printQueue(Trequeue<T>);
+void printQueue(Trequeue<T>&);
 
 int main() {
   Trequeue<int> queue;
@@ -23,6 +23,7 @@ int main() {
   queue.add(0, 10);
   queue.add(0, 11);
   queue.add(0, 12);
+  queue.add(3, 103);
 
   printQueue(queue);
 
@@ -30,12 +31,12 @@ int main() {
 }
 
 template <class T>
-void printQueue(Trequeue<T> queue) {
-//  cout << "[";
+void printQueue(Trequeue<T> &queue) {
+  cout << "[";
 
-//  for (int i = 0; i < queue.size() - 1; i++) {
-//    cout << queue.get(i) << ", ";
-//  }
+  for (int i = 0; i < queue.size() - 1; i++) {
+    cout << queue.get(i) << ", ";
+  }
 
-//  cout << queue.get(queue.size() - 1) << "]" << endl;
+  cout << queue.get(queue.size() - 1) << "]" << endl;
 }
