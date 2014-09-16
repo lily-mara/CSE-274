@@ -1,7 +1,16 @@
 import sys
 if 'win' in sys.platform:
-	env = Environment(tools = ['mingw'])
+	debug = Environment(tools = ['mingw'])
+	release = Environment(tools = ['mingw'])
 else:
-	env = Environment()
+	debug = Environment()
+	release = Environment()
 
-env.Program('treque_test', Glob('src/*.cpp'))
+debug.Append(CCFLAGS=['-g'])
+
+debug.Program('treque_test', Glob('src/*.cpp'))
+release.Program('treque', Glob('src/*.cpp'))
+
+release.Alias('release')
+
+Default(debug)
