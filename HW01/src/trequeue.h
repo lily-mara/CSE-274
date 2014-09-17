@@ -22,6 +22,7 @@ public:
   void set(int, int);
   void add(int, int);
   T remove(int);
+  void clear();
 };
 
 template <class T>
@@ -30,6 +31,12 @@ Trequeue<T>::Trequeue() {
 
 template <class T>
 Trequeue<T>::~Trequeue() {
+}
+
+template <class T>
+void Trequeue<T>::clear() {
+  this->front.clear();
+  this->back.clear();
 }
 
 template <class T>
