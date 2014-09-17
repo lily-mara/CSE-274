@@ -11,10 +11,10 @@
 
 template <class T>
 class Trequeue {
-protected:
-public:
+private:
   ods::ArrayDeque<T> front;
   ods::ArrayDeque<T> back;
+public:
   Trequeue();
   ~Trequeue();
   int size();
