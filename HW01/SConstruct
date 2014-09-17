@@ -1,17 +1,40 @@
 import sys
 if 'win' in sys.platform:
-	debug = Environment(tools = ['mingw'])
-	release = Environment(tools = ['mingw'])
+	env = Environment(tools = ['mingw'])
+	name = 'treque'
 else:
-	debug = Environment()
-	release = Environment()
+	env = Environment()
+	name = 'treque.out'
 
-debug.Append(CXXFLAGS=['-g', 'Wall'])
+env.Append(
+	CXXFLAGS=[
+		'-g',
+		'-Wall',
+		'-pedantic',
+		'-Wall',
+		'-Wextra',
+		'-Wcast-align',
+		'-Wcast-qual',
+		'-Wctor-dtor-privacy',
+		'-Wdisabled-optimization',
+		'-Wformat=2',
+		'-Winit-self',
+		'-Wlogical-op',
+		'-Wmissing-declarations',
+		'-Wmissing-include-dirs',
+		'-Wnoexcept',
+		'-Woverloaded-virtual',
+		'-Wredundant-decls',
+		'-Wshadow',
+		'-Wsign-conversion',
+		'-Wsign-promo',
+		'-Wstrict-null-sentinel',
+		'-Wstrict-overflow=5',
+		'-Wswitch-default',
+		'-Wundef',
+		'-Werror',
+		'-Wno-unused'
+	]
+)
 
-release_object = release.Object('treque', Glob('src/*.cpp'))
-release_target = release.Program(release_object)
-release.Alias('release', release_target)
-
-debug_object = release.Object('treque-dbg', Glob('src/*.cpp'))
-debug_target = debug.Program(debug_object)
-debug.Default(debug_target)
+target = env.Program(name, Glob('src/*.cpp'))
