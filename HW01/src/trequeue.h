@@ -23,6 +23,7 @@ public:
   void add(int, int);
   T remove(int);
   void clear();
+  void balance();
 };
 
 template <class T>
@@ -76,6 +77,11 @@ T Trequeue<T>::remove(int index) {
   } else {
     this->front.remove(index);
   }
+}
+
+template <class T>
+void Trequeue<T>::balance() {
+
 }
 
 #endif
