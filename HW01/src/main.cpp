@@ -26,9 +26,6 @@ int main() {
 
   printQueue(queue);
 
-  queue.clear();
-  cout << queue.size() << endl;
-
   return 0;
 }
 
