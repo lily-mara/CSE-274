@@ -47,7 +47,7 @@ int Trequeue<T>::size() {
 
 template <class T>
 T Trequeue<T>::get(int index) {
-  if (index > this->front.size()) {
+  if (index >= this->front.size()) {
     return this->back.get(index - this->front.size());
   }
 
@@ -72,7 +72,7 @@ void Trequeue<T>::add(int index, int value) {
     this->front.add(index, value);
   }
 
-  this->balance();
+  // this->balance();
 }
 
 template <class T>
