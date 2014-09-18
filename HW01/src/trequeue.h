@@ -50,6 +50,8 @@ T Trequeue<T>::get(int index) {
   if (index > this->front.size()) {
     return this->back.get(index - this->front.size());
   }
+
+  this->balance();
   return this->front.get(index);
 }
 
@@ -59,6 +61,8 @@ void Trequeue<T>::set(int index, int value) {
     this->back.set(index - this->front.size(), value);
   }
   this->front.set(index, value);
+
+  this->balance();
 }
 
 template <class T>
@@ -68,6 +72,8 @@ void Trequeue<T>::add(int index, int value) {
   } else {
     this->front.add(index, value);
   }
+
+  this->balance();
 }
 
 template <class T>
@@ -77,10 +83,19 @@ T Trequeue<T>::remove(int index) {
   } else {
     this->front.remove(index);
   }
+
+  this->balance();
 }
 
 template <class T>
 void Trequeue<T>::balance() {
+  bool bigFront = this->back.size() * 3 < this->front.size();
+  bool bigBack = this->front.size() * 3 < this->back.size();
+
+  if (!(bigFront || bigBack)) {
+    return;
+  }
+
   int frontSize = this->size() / 2;
   int backSize = this->size() - frontSize;
 
