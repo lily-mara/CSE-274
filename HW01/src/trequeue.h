@@ -81,7 +81,22 @@ T Trequeue<T>::remove(int index) {
 
 template <class T>
 void Trequeue<T>::balance() {
+  int frontSize = this->size() / 2;
+  int backSize = this->size() - frontSize;
 
+  ods::ArrayDeque<T> newFront;
+  ods::ArrayDeque<T> newBack;
+
+  for (int i = 0; i < frontSize; i++) {
+    newFront.add(i, this->get(i));
+  }
+
+  for (int i = 0; i < backSize; i++) {
+    newBack.add(i, this->get(frontSize + i));
+  }
+
+  this->front = newFront;
+  this->back = newBack;
 }
 
 #endif
