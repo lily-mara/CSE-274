@@ -78,6 +78,8 @@ void Trequeue<T>::add(int index, T value) {
 
 template <class T>
 T Trequeue<T>::remove(int index) {
+  T item = this->get(index);
+
   if (index > this->front.size()) {
     this->back.remove(index - this->front.size());
   } else {
@@ -85,6 +87,8 @@ T Trequeue<T>::remove(int index) {
   }
 
   this->balance();
+
+  return item;
 }
 
 template <class T>
