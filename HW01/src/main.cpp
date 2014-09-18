@@ -24,11 +24,15 @@ int main() {
   queue.add(0, 12);
   queue.add(3, 103);
 
+  cout << queue << endl;
+  printQueue(queue);
+
+  queue.balance();
+
   printQueue(queue);
 
   queue.clear();
   cout << queue.size() << endl;
-  printQueue(queue);
 
   return 0;
 }
