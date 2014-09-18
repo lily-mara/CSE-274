@@ -24,7 +24,6 @@ int main() {
   queue.add(0, 12);
   queue.add(3, 103);
 
-  cout << queue << endl;
   printQueue(queue);
 
   queue.balance();
