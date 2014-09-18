@@ -51,7 +51,6 @@ T Trequeue<T>::get(int index) {
     return this->back.get(index - this->front.size());
   }
 
-  this->balance();
   return this->front.get(index);
 }
 
