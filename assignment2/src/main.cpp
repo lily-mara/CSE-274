@@ -5,6 +5,16 @@
  *      Author: maranj
  */
 
+#include <iostream>
+
+#include "DLList.h"
+
+using ods::DLList;
+using std::cout;
+using std::endl;
+using std::cin;
+
 int main() {
+  DLList<int> x;
   return 0;
 }
