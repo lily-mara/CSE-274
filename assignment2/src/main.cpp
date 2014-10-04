@@ -41,4 +41,14 @@ void testPalendrome() {
   nums.add(0);
 
   assert(nums.IsPalendrome());
+
+  DLList<int> notNums;
+  notNums.add(0);
+  notNums.add(1);
+  notNums.add(3);
+  notNums.add(2);
+  notNums.add(1);
+  notNums.add(0);
+
+  assert(!notNums.IsPalendrome());
 }
