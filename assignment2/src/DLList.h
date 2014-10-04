@@ -32,6 +32,7 @@ public:
 	virtual void add(T x) { add(size(), x); }
 	virtual T remove(int i);
 	virtual void clear();
+	bool IsPalendrome();
 };
 
 template<class T>
@@ -120,6 +121,11 @@ T DLList<T>::remove(int i) {
 	T x = w->x;
 	remove(w);
 	return x;
+}
+
+template<class T>
+bool DLList<T>::IsPalendrome() {
+  return false;
 }
 
 
