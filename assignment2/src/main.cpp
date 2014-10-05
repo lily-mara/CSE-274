@@ -15,10 +15,9 @@ using std::cout;
 using std::endl;
 using std::cin;
 
-void testPalendrome();
-
 template <class T>
 void printList(DLList<T> &list);
+void testPalendrome();
 
 int main() {
   testPalendrome();
