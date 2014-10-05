@@ -22,6 +22,7 @@ protected:
   void remove(Node *w);
   Node* addBefore(Node *w, T x);
   Node* getNode(int i);
+  void rotateOnce();
 public:
   DLList();
   virtual ~DLList();
@@ -152,6 +153,11 @@ void DLList<T>::Rotate(int r) {
   }
 
   dummy.next = node;
+}
+
+template<class T>
+void DLList<T>::rotateOnce() {
+
 }
 
 } /* namespace ods */
