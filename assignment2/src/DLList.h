@@ -33,6 +33,7 @@ public:
 	virtual T remove(int i);
 	virtual void clear();
 	bool IsPalendrome();
+	DLList<T> DLList<T>::deal();
 };
 
 template<class T>
@@ -131,6 +132,13 @@ bool DLList<T>::IsPalendrome() {
     }
   }
   return true;
+}
+
+template<class T>
+DLList<T> DLList<T>::deal() {
+  DLList<T> toReturn;
+
+  return toReturn;
 }
 
 
