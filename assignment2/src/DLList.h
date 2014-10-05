@@ -144,7 +144,14 @@ DLList<T> DLList<T>::deal() {
 
 template<class T>
 void DLList<T>::Rotate(int r) {
+  r = r % n;
+  Node* node = dummy.next;
 
+  for (int i = 0; i < r; i++) {
+    node = node->next;
+  }
+
+  dummy.next = node;
 }
 
 } /* namespace ods */
