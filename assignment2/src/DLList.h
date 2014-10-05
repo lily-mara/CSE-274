@@ -33,7 +33,8 @@ public:
   virtual T remove(int i);
   virtual void clear();
   bool IsPalendrome();
-  DLList<T> DLList<T>::deal();
+  DLList<T> deal();
+  void Rotate(int r);
 };
 
 template<class T>
@@ -141,6 +142,10 @@ DLList<T> DLList<T>::deal() {
   return toReturn;
 }
 
+template<class T>
+void DLList<T>::Rotate(int r) {
+
+}
 
 } /* namespace ods */
 #endif /* DLLIST_H_ */
