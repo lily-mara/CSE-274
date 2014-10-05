@@ -129,7 +129,7 @@ bool DLList<T>::IsPalendrome() {
     if (get(i) != get(n-i-1)) {
       return false;
     }
-}
+  }
   return true;
 }
 
