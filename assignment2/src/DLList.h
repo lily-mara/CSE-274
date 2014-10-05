@@ -157,7 +157,12 @@ void DLList<T>::Rotate(int r) {
 
 template<class T>
 void DLList<T>::rotateOnce() {
+  Node* next = dummy.next;
+  Node* prev = &dummy;
 
+  for (int i = 0; i < n; i++) {
+	
+  }
 }
 
 } /* namespace ods */
