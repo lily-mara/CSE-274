@@ -17,6 +17,9 @@ using std::cin;
 
 void testPalendrome();
 
+template <class T>
+void printList(DLList<T> &list);
+
 int main() {
   testPalendrome();
   return 0;
@@ -51,4 +54,15 @@ void testPalendrome() {
   notNums.add(0);
 
   assert(!notNums.IsPalendrome());
+}
+
+template <class T>
+void printList(DLList<T> &list) {
+  cout << "[ ";
+
+  for (int i = 0; i < list.size() - 1; i++) {
+	cout << list.get(i) << ", ";
+  }
+
+  cout << list.get(list.size() - 1) << " ]" << endl;
 }
