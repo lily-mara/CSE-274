@@ -126,10 +126,10 @@ T DLList<T>::remove(int i) {
 template<class T>
 bool DLList<T>::IsPalendrome() {
   for (int i = 0; i < n/2; i++) {
-	if (get(i) != get(n-i-1)) {
-	  return false;
-	}
-  }
+    if (get(i) != get(n-i-1)) {
+      return false;
+    }
+}
   return true;
 }
 
