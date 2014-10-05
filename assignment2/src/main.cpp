@@ -18,10 +18,28 @@ using std::cin;
 template <class T>
 void printList(DLList<T> &list);
 void testPalendrome();
+void testRotate();
 
 int main() {
   testPalendrome();
+  testRotate();
   return 0;
+}
+
+void testRotate() {
+  DLList<char> nate;
+  nate.add('n');
+  nate.add('a');
+  nate.add('t');
+  nate.add('e');
+
+  cout << "Before rotation: ";
+  printList(nate);
+
+  nate.Rotate(1);
+
+  cout << "After rotation of 1: ";
+  printList(nate);
 }
 
 void testPalendrome() {
