@@ -167,8 +167,13 @@ void DLList<T>::absorb(DLList<T> &l2) {
   thisTail->next = otherHead;
   dummy.prev = otherTail;
 
+  otherTail->next = &dummy;
+
   l2.dummy.next = &(l2.dummy);
   l2.dummy.prev = &(l2.dummy);
+
+  n += l2.n;
+  l2.n = 0;
 }
 
 template<class T>
