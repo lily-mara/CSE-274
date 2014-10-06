@@ -179,12 +179,18 @@ void DLList<T>::absorb(DLList<T> &l2) {
 
 template<class T>
 void DLList<T>::rotateOnce() {
-  Node* next = dummy.next;
-  Node* prev = &dummy;
+  Node* head = dummy.next;
+  Node* tail = dummy.prev;
+  Node* newTail = getNode(n-1);
 
-  for (int i = 0; i < n; i++) {
-	
-  }
+  dummy.next = tail;
+  tail->prev = &dummy;
+
+  tail->next = head;
+  head->prev = tail;
+
+  dummy.prev = newTail;
+  newTail->next = &dummy;
 }
 
 } /* namespace ods */
