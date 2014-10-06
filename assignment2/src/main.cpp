@@ -19,11 +19,17 @@ template <class T>
 void printList(DLList<T> &list);
 void testPalendrome();
 void testRotate();
+void testAbsorb();
 
 int main() {
-  testPalendrome();
-  testRotate();
+  // testPalendrome();
+  // testRotate();
+  testAbsorb();
   return 0;
+}
+
+void testAbsorb() {
+
 }
 
 void testRotate() {
