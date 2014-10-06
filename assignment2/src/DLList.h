@@ -174,7 +174,7 @@ void DLList<T>::absorb(DLList<T> &l2) {
   l2.n = 0;
 }
 
-template<class T>
+template<class T> inline
 void DLList<T>::rotateOnce() {
   Node* head = dummy.next;
   Node* tail = dummy.prev;
