@@ -29,7 +29,33 @@ int main() {
 }
 
 void testAbsorb() {
+  DLList<char> nate;
+  nate.add('N');
+  nate.add('a');
+  nate.add('t');
+  nate.add('e');
+  nate.add(' ');
 
+  DLList<char> mara;
+  mara.add('M');
+  mara.add('a');
+  mara.add('r');
+  mara.add('a');
+
+  cout << "List 1: ";
+  printList(nate);
+
+  cout << "List 2: ";
+  printList(mara);
+
+  cout << "Combine lists into one..." << endl;
+  nate.absorb(mara);
+
+  cout << "List 1 after absorb: ";
+  printList(nate);
+
+  cout << "List 2 after absorb: ";
+  printList(mara);
 }
 
 void testRotate() {
