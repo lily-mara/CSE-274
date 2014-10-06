@@ -165,9 +165,10 @@ void DLList<T>::absorb(DLList<T> &l2) {
   Node* otherHead = l2.dummy.next;
 
   thisTail->next = otherHead;
-  dummy.prev = otherTail;
+  otherHead->prev = thisTail;
 
   otherTail->next = &dummy;
+  dummy.prev = otherTail;
 
   l2.dummy.next = &(l2.dummy);
   l2.dummy.prev = &(l2.dummy);
