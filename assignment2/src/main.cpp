@@ -23,8 +23,8 @@ void testAbsorb();
 
 int main() {
   // testPalendrome();
-  // testRotate();
-  testAbsorb();
+  testRotate();
+  // testAbsorb();
   return 0;
 }
 
@@ -71,6 +71,11 @@ void testRotate() {
   nate.Rotate(1);
 
   cout << "After rotation of 1: ";
+  printList(nate);
+
+  nate.Rotate(2);
+
+  cout << "After rotation of 2: ";
   printList(nate);
 }
 
