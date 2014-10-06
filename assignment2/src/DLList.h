@@ -36,6 +36,7 @@ public:
   bool IsPalendrome();
   DLList<T> deal();
   void Rotate(int r);
+  void absorb(DLList<T> &l2);
 };
 
 template<class T>
@@ -153,6 +154,11 @@ void DLList<T>::Rotate(int r) {
   }
 
   dummy.next = node;
+}
+
+template<class T>
+void DLList<T>::absorb(DLList<T> &l2) {
+
 }
 
 template<class T>
