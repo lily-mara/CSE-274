@@ -164,7 +164,7 @@ void DLList<T>::absorb(DLList<T> &l2) {
   Node* otherTail = l2.dummy.prev;
   Node* otherHead = l2.dummy.next;
 
-  thisTail.next = otherHead;
+  thisTail->next = otherHead;
   dummy.prev = otherTail;
 
   l2.dummy.next = &(l2.dummy);
