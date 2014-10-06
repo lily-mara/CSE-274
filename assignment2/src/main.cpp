@@ -109,9 +109,12 @@ template <class T>
 void printList(DLList<T> &list) {
   cout << "[ ";
 
-  for (int i = 0; i < list.size() - 1; i++) {
-	cout << list.get(i) << ", ";
-  }
+  if (list.size() > 0) {
+    for (int i = 0; i < list.size() - 1; i++) {
+      cout << list.get(i) << ", ";
+    }
 
-  cout << list.get(list.size() - 1) << " ]" << endl;
+    cout << list.get(list.size() - 1);
+  }
+  cout << " ]" << endl;
 }
