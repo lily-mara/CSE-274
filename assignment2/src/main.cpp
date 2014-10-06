@@ -20,12 +20,38 @@ void printList(DLList<T> &list);
 void testPalendrome();
 void testRotate();
 void testAbsorb();
+void testDeal();
 
 int main() {
   // testPalendrome();
-  testRotate();
+  // testRotate();
   // testAbsorb();
+  testDeal();
   return 0;
+}
+
+void testDeal() {
+  DLList<int> nums;
+  nums.add(0);
+  nums.add(1);
+  nums.add(2);
+  nums.add(3);
+  nums.add(4);
+  nums.add(5);
+  nums.add(6);
+  nums.add(7);
+  nums.add(8);
+  nums.add(9);
+
+  cout << "List before deal: ";
+  printList(nums);
+
+  DLList<int> oddNums = nums.deal();
+  cout << endl << "List after deal: ";
+  printList(nums);
+
+  cout << endl << "New list created by deal: ";
+  printList(oddNums);
 }
 
 void testAbsorb() {
