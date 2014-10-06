@@ -158,7 +158,17 @@ void DLList<T>::Rotate(int r) {
 
 template<class T>
 void DLList<T>::absorb(DLList<T> &l2) {
+  Node* thisTail = dummy.prev;
+  Node* thisHead = dummy.next;
 
+  Node* otherTail = l2.dummy.prev;
+  Node* otherHead = l2.dummy.next;
+
+  thisTail.next = otherHead;
+  dummy.prev = otherTail;
+
+  l2.dummy.next = &(l2.dummy);
+  l2.dummy.prev = &(l2.dummy);
 }
 
 template<class T>
