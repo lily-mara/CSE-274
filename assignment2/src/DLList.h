@@ -23,6 +23,7 @@ protected:
   Node* addBefore(Node *w, T x);
   Node* getNode(int i);
   void rotateOnce();
+  void appendToList(Node* node, DLList<T>& l2);
 public:
   DLList();
   virtual ~DLList();
@@ -141,7 +142,30 @@ template<class T>
 DLList<T> DLList<T>::deal() {
   DLList<T> toReturn;
 
+  for (int i = 1; i < n; i++) {
+    appendToList(getNode(i), toReturn);
+  }
+
   return toReturn;
+}
+
+template<class T> inline
+void DLList<T>::appendToList(Node* node, DLList<T>& l2) {
+  Node* thisOldPrev = node->prev;
+  Node* thisOldNext = node->next;
+  Node* otherTail = l2.dummy.prev;
+
+  thisOldNext->prev = thisOldPrev;
+  thisOldPrev->next = thisOldNext;
+
+  node->prev = otherTail;
+  otherTail->next = node;
+
+  l2.dummy.prev = node;
+  node->next = &(l2.dummy);
+
+  n--;
+  l2.n++;
 }
 
 template<class T>
