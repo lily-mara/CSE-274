@@ -204,13 +204,13 @@ void DLList<T>::rotateOnce() {
   Node* tail = dummy.prev;
   Node* newTail = getNode(n-2);
 
-  dummy.next = tail;
-  tail->prev = &dummy;
-
-  tail->next = head;
-  head->prev = tail;
-
   dummy.prev = newTail;
+  dummy.next = tail;
+
+  tail->prev = &dummy;
+  tail->next = head;
+
+  head->prev = tail;
   newTail->next = &dummy;
 }
 
