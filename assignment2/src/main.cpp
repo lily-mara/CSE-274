@@ -23,9 +23,16 @@ void TestAbsorb();
 void TestDeal();
 
 int main() {
+  cout << "Test IsPalendrome..." << endl;
   TestPalendrome();
+
+  cout << endl << "Test Rotate..." << endl;
   TestRotate();
+
+  cout << endl << "Test absorb..." << endl;
   TestAbsorb();
+
+  cout << endl << "Test deal..." << endl;
   TestDeal();
   return 0;
 }
@@ -47,10 +54,10 @@ void TestDeal() {
   PrintList(nums);
 
   DLList<int> oddNums = nums.deal();
-  cout << endl << "List after deal: ";
+  cout << "List after deal: ";
   PrintList(nums);
 
-  cout << endl << "New list created by deal: ";
+  cout << "New list created by deal: ";
   PrintList(oddNums);
 }
 
