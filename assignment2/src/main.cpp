@@ -23,9 +23,9 @@ void testAbsorb();
 void testDeal();
 
 int main() {
-  // testPalendrome();
-  // testRotate();
-  // testAbsorb();
+  testPalendrome();
+  testRotate();
+  testAbsorb();
   testDeal();
   return 0;
 }
