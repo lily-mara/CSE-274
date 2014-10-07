@@ -16,21 +16,21 @@ using std::endl;
 using std::cin;
 
 template <class T>
-void printList(DLList<T> &list);
-void testPalendrome();
-void testRotate();
-void testAbsorb();
-void testDeal();
+void PrintList(DLList<T> &list);
+void TestPalendrome();
+void TestRotate();
+void TestAbsorb();
+void TestDeal();
 
 int main() {
-  testPalendrome();
-  testRotate();
-  testAbsorb();
-  testDeal();
+  TestPalendrome();
+  TestRotate();
+  TestAbsorb();
+  TestDeal();
   return 0;
 }
 
-void testDeal() {
+void TestDeal() {
   DLList<int> nums;
   nums.add(0);
   nums.add(1);
@@ -44,17 +44,17 @@ void testDeal() {
   nums.add(9);
 
   cout << "List before deal: ";
-  printList(nums);
+  PrintList(nums);
 
   DLList<int> oddNums = nums.deal();
   cout << endl << "List after deal: ";
-  printList(nums);
+  PrintList(nums);
 
   cout << endl << "New list created by deal: ";
-  printList(oddNums);
+  PrintList(oddNums);
 }
 
-void testAbsorb() {
+void TestAbsorb() {
   DLList<char> nate;
   nate.add('N');
   nate.add('a');
@@ -69,22 +69,22 @@ void testAbsorb() {
   mara.add('a');
 
   cout << "List 1: ";
-  printList(nate);
+  PrintList(nate);
 
   cout << "List 2: ";
-  printList(mara);
+  PrintList(mara);
 
   cout << "Combine lists into one..." << endl;
   nate.absorb(mara);
 
   cout << "List 1 after absorb: ";
-  printList(nate);
+  PrintList(nate);
 
   cout << "List 2 after absorb: ";
-  printList(mara);
+  PrintList(mara);
 }
 
-void testRotate() {
+void TestRotate() {
   DLList<char> nate;
   nate.add('n');
   nate.add('a');
@@ -92,20 +92,20 @@ void testRotate() {
   nate.add('e');
 
   cout << "Before rotation: ";
-  printList(nate);
+  PrintList(nate);
 
   nate.Rotate(1);
 
   cout << "After rotation of 1: ";
-  printList(nate);
+  PrintList(nate);
 
   nate.Rotate(2);
 
   cout << "After rotation of 2: ";
-  printList(nate);
+  PrintList(nate);
 }
 
-void testPalendrome() {
+void TestPalendrome() {
   DLList<char> bob;
   bob.add('b');
   bob.add('o');
@@ -137,7 +137,7 @@ void testPalendrome() {
 }
 
 template <class T>
-void printList(DLList<T> &list) {
+void PrintList(DLList<T> &list) {
   cout << "[ ";
 
   if (list.size() > 0) {
