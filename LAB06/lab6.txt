@@ -1,0 +1,3 @@
+One advantage of LinearHashTables is that they are simpler to create than ChainedHashTables with approximately the same complexity.
+
+One advantage of ChainedHashTables is that they are more memory efficient than LinearHashTables because their storage is dynamically allocated as items are added.
