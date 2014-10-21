@@ -55,6 +55,7 @@ void ChainedHashTable<T>::resize() {
 		for (int j = 0; j < t[i].size(); j++) {
 			T x = t[i].get(j);
 			newTable[hash(x)].add(x);
+			n++;
 		}
 	}
 	t = newTable;
