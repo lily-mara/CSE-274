@@ -10,14 +10,14 @@
 #include <climits>
 #include "utils.h"
 #include "array.h"
-#include "ArrayStack.h"
+#include "DLList.h"
 
 namespace ods {
 
 template<class T>
 class ChainedHashTable {
 protected:
-	typedef ArrayStack<T> List;
+	typedef DLList<T> List;
 	T null;
 	array<List> t;
 	int n;
