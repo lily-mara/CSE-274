@@ -3,6 +3,8 @@
 // Author      : Nate Mara
 //============================================================================
 
+#include "ChainedHashTable.h"
+
 using namespace std;
 
 int main() {
