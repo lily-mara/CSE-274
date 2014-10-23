@@ -19,7 +19,7 @@ int main() {
   TestLinearHashTableAdding();
   TestLinearHashTableAddSlow();
 //  TestChainedHashTableLongestList();
-//  TestChainedHashTableAdding();
+  TestChainedHashTableAdding();
   return 0;
 }
 
@@ -66,6 +66,9 @@ void TestChainedHashTableLongestList() {
 
 void TestChainedHashTableAdding() {
   ChainedHashTable<int> t;
+  t.add(0);
+  t.add(1);
+  t.add(2);
   t.add(3);
   t.add(4);
   t.add(5);
@@ -73,12 +76,10 @@ void TestChainedHashTableAdding() {
   t.add(7);
   t.add(8);
   t.add(9);
-  t.add(0);
-  t.add(1);
-  t.add(2);
 
-  cout << t.find(0) << endl;
-  cout << t.find(2) << endl;
-  cout << t.find(10) << endl;
-  cout << t.find(100) << endl;
+  assert(t.find(2) == 2);
+  assert(t.find(1000) != 1000);
+  assert(t.find(9) == 9);
+  assert(t.find(5) == 5);
+  assert(t.find(4128439) != 4128439);
 }
