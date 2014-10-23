@@ -18,7 +18,7 @@ using namespace ods;
 int main() {
   TestLinearHashTableAdding();
   TestLinearHashTableAddSlow();
-//  TestChainedHashTableLongestList();
+  TestChainedHashTableLongestList();
   TestChainedHashTableAdding();
   return 0;
 }
@@ -61,7 +61,7 @@ void TestChainedHashTableLongestList() {
   for (int i = 0; i < 10000; i++) {
     t.add(i);
   }
-  cout << "Longest list (1 < x < 3): " << t.GetLongestList() << endl;
+  assert(t.GetLongestList() <= 3);
 }
 
 void TestChainedHashTableAdding() {
