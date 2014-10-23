@@ -27,12 +27,7 @@ class LinearHashTable {
   T null, del;
   void resize();
   int hash(T x) {
-    unsigned h = hashCode(x);
-    return (tab[0][h&0xff]
-         ^ tab[1][(h>>8)&0xff]
-         ^ tab[2][(h>>16)&0xff]
-         ^ tab[3][(h>>24)&0xff])
-        >> (w-d);
+    return (unsigned)(x % (1 << d));
   }
   // Sample code for the book only -- never use this
   /*
