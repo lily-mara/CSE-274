@@ -95,7 +95,8 @@ void LinearHashTable<T>::resize() {
   d = 1;
   while ((1 << d) < 3 * n)
     d++;
-  array<T> new_front(1 << d, null);
+  array<T> new_front((1 << d) >> 1, null);
+  array<T> new_back((1 << d) >> 1, null);
   q = n;
   // insert everything into tnew
   for (int k = 0; k < front.length; k++) {
@@ -106,7 +107,16 @@ void LinearHashTable<T>::resize() {
       new_front[i] = front[k];
     }
   }
+  for (int k = 0; k < back.length; k++) {
+    if (back[k] != null && back[k] != del) {
+      int i = hash(back[k]);
+      while (new_back[i] != null)
+        i = (i == new_back.length - 1) ? 0 : i + 1;
+      new_back[i] = back[k];
+    }
+  }
   front = new_front;
+  back = new_back;
 }
 
 template<class T>
