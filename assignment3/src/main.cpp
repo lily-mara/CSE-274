@@ -15,8 +15,8 @@ using namespace ods;
 
 int main() {
   TestLinearHashTableAdding();
-//   TestChainedHashTableLongestList();
-//   TestChainedHashTableAdding();
+//  TestChainedHashTableLongestList();
+//  TestChainedHashTableAdding();
   return 0;
 }
 
