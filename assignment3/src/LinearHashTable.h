@@ -33,6 +33,8 @@ class LinearHashTable {
   int hash2(T x) {
     return 1 + (hash(x) % ((1 << d) - 1));
   }
+  int FindOpenPosition(T x);
+  int FindOpenPosition(T x, array<T> &l1, array<T> &l2);
 
 public:
   // FIXME: get rid of default constructor
@@ -95,53 +97,57 @@ void LinearHashTable<T>::resize() {
   array<T> new_front((1 << d) >> 1, null);
   array<T> new_back((1 << d) >> 1, null);
   q = n;
+
   // move elements out of front array to new position
   for (int k = 0; k < front.length; k++) {
-    if (front[k] != null && front[k] != del) {
-      int i = 0;
-      int m = 1 << d;
-      int index = (hash(front[k]) + i*hash2(front[k])) % m;
-      if (i < new_front.length) {
-        while (new_front[i] != null) {
-          i++;
-          index = (hash(front[k]) + i*hash2(front[k])) % m;
-        }
-        new_front[index] = front[k];
-      } else {
-        i = i - new_back.length;
-        while (new_back[i] != null) {
-          i++;
-          index = (hash(front[k]) + i*hash2(front[k])) % m;
-        }
-        new_back[index] = front[k];
-      }
+    int index = FindOpenPosition(front[k], new_front, new_back);
+    if (index < new_front.length) {
+      new_front[index] = front[k];
+    } else {
+      new_back[index] = front[k];
     }
   }
 
-  // move elements out of back array to new position
+// move elements out of back array to new position
   for (int k = 0; k < back.length; k++) {
-    if (back[k] != null && front[k] != del) {
-      int i = 0;
-      int m = 1 << d;
-      int index = (hash(back[k]) + i*hash2(back[k])) % m;
-      if (i < new_front.length) {
-        while (new_front[i] != null) {
-          i++;
-          index = (hash(back[k]) + i*hash2(back[k])) % m;
-        }
-        new_front[index] = back[k];
-      } else {
-        i = i - new_back.length;
-        while (new_back[i] != null) {
-          i++;
-          index = (hash(front[k]) + i*hash2(front[k])) % m;
-        }
-        new_back[index] = back[k];
-      }
+    int index = FindOpenPosition(back[k], new_front, new_back);
+    if (index < new_front.length) {
+      new_front[index] = back[k];
+    } else {
+      new_back[index] = back[k];
     }
   }
   front = new_front;
   back = new_back;
+}
+
+template<class T>
+int LinearHashTable<T>::FindOpenPosition(T x, array<T> &l1, array<T> &l2) {
+  int i = 0;
+  int m = 1 << d;
+  int index = (hash(x) + i * hash2(x)) % m;
+
+  if (index < l1.length) {
+    while (l1[index] != null && l1[index] != del) {
+      i++;
+      index = (hash(x) + i * hash2(x)) % l1.length;
+    }
+    return index;
+
+  } else {
+    index = index - l1.length;
+    while (l2[index] != null && l2[index] != del) {
+      i++;
+      index = index - l2.length;
+    }
+    return index + l2.length;
+  }
+  return -1;
+}
+
+template<class T>
+int LinearHashTable<T>::FindOpenPosition(T x) {
+  return FindOpenPosition(x, front, back);
 }
 
 template<class T>
@@ -163,41 +169,43 @@ bool LinearHashTable<T>::add(T x) {
     resize();   // max 50% occupancy
   if (find(x) != null)
     return false;
-  int i = hash(x);
 
-  if (i < front.length) {
-    while (front[i] != null && front[i] != del)
-      i = (i == front.length - 1) ? 0 : i + 1; // increment i
-    if (front[i] == null)
+  int index = FindOpenPosition(x);
+
+  if (index < front.length) {
+    if (front[index] == null)
       q++;
-    front[i] = x;
+    front[index] = x;
   } else {
-    i = i - front.length;
-    while (back[i] != null && back[i] != del)
-      i = (i == back.length - 1) ? 0 : i + 1; // increment i
-    if (back[i] == null)
+    index = index - front.length;
+    if (back[index] == null)
       q++;
-    back[i] = x;
+    back[index] = x;
   }
+
   n++;
   return true;
 }
 
 template<class T>
 T LinearHashTable<T>::find(T x) {
-  int i = hash(x);
-  if (i < front.length) {
-    while (front[i] != null) {
-      if (front[i] != del && front[i] == x)
-        return front[i];
-      i = (i == front.length - 1) ? 0 : i + 1; // increment i
+  int i = 0;
+  int m = 1 << d;
+  int index = (hash(x) + i * hash2(x)) % m;
+  if (index < front.length) {
+    while (front[index] != null) {
+      if (front[index] != del && front[index] == x)
+        return front[index];
+      i++;
+      index = (hash(x) + i * hash2(x)) % front.length;
     }
   } else {
-    i = i - front.length;
-    while (back[i] != null) {
-      if (back[i] != del && back[i] == x)
-        return back[i];
-      i = (i == back.length - 1) ? 0 : i + 1; // increment i
+    index = index - front.length;
+    while (back[index] != null) {
+      if (back[index] != del && back[index] == x)
+        return back[index];
+      i++;
+      index = (hash(x) + i * hash2(x)) % back.length;
     }
   }
   return null;
