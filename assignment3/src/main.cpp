@@ -12,6 +12,7 @@ void TestLinearHashTableAdding();
 void TestChainedHashTableLongestList();
 void TestLinearHashTableAddSlow();
 void TestLinearHashTableRemoving();
+void TestChainedHashTableRemoving();
 
 using namespace std;
 using namespace ods;
@@ -22,6 +23,7 @@ int main() {
   TestChainedHashTableLongestList();
   TestChainedHashTableAdding();
   TestLinearHashTableRemoving();
+  TestChainedHashTableRemoving();
   return 0;
 }
 
@@ -44,8 +46,27 @@ void TestLinearHashTableRemoving() {
   assert(t.find(4) == del || t.find(4) == null);
   assert(t.find(5) == 5);
   assert(t.find(6) == del || t.find(6) == null);
-
 }
+
+void TestChainedHashTableRemoving() {
+  ChainedHashTable<int> t;
+
+  for (int i = 0; i < 20; i++) {
+    t.add(i);
+  }
+
+  for (int i = 0; i < 20; i+=2) {
+    t.remove(i);
+  }
+
+  assert(t.find(1) == 1);
+  assert(t.find(2) != 2);
+  assert(t.find(3) == 3);
+  assert(t.find(4) != 4);
+  assert(t.find(5) == 5);
+  assert(t.find(6) != 6);
+}
+
 
 void TestLinearHashTableAdding() {
   int null = -5000;
