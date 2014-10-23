@@ -8,6 +8,7 @@
 #ifndef CHAINEDHASHTABLE_H_
 #define CHAINEDHASHTABLE_H_
 #include <climits>
+#include <algorithm>
 #include "utils.h"
 #include "array.h"
 #include "DLList.h"
@@ -94,7 +95,12 @@ ChainedHashTable<T>::~ChainedHashTable() {
 
 template<class T>
 int ChainedHashTable<T>::GetLongestList() {
-  return 0;
+  int longest = 0;
+
+  for (int i = 0; i < t.length; i++) {
+    longest = std::max(t[i].size(), longest);
+  }
+  return longest;
 }
 
 template<class T>
