@@ -95,7 +95,7 @@ void LinearHashTable<T>::resize() {
   array<T> new_front((1 << d) >> 1, null);
   array<T> new_back((1 << d) >> 1, null);
   q = n;
-  // insert everything into tnew
+  // move elements out of front array to new position
   for (int k = 0; k < front.length; k++) {
     if (front[k] != null && front[k] != del) {
       int i = hash(front[k]);
@@ -111,6 +111,8 @@ void LinearHashTable<T>::resize() {
       }
     }
   }
+
+  // move elements out of back array to new position
   for (int k = 0; k < back.length; k++) {
     if (back[k] != null && front[k] != del) {
       int i = hash(back[k]);
