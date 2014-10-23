@@ -213,7 +213,7 @@ bool LinearHashTable<T>::addSlow(T x) {
   int i = hash(x);
   if (i < front.length) {
     while (front[i] != null) {
-      if (front[i] != del && x.equals(front[i]))
+      if (front[i] != del && x == front[i])
         return false;
       i = (i == front.length - 1) ? 0 : i + 1; // increment i
     }
@@ -221,7 +221,7 @@ bool LinearHashTable<T>::addSlow(T x) {
   } else {
     i = i - back.length;
     while (back[i] != null) {
-      if (back[i] != del && x.equals(front[i]))
+      if (back[i] != del && x == back[i])
         return false;
       i = (i == back.length - 1) ? 0 : i + 1; // increment i
     }
