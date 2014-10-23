@@ -22,8 +22,8 @@ class LinearHashTable {
   static const int r = 8;
   array<T> front;
   array<T> back;
-  int n;   // number of values in T
-  int q;   // number of non-null entries in T
+  int n;   // number of values in this hash table
+  int q;   // number of non-null entries in this hash table
   int d;   // t.length = 2^d
   T null, del;
   void resize();
