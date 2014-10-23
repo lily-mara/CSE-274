@@ -1,0 +1,5 @@
+A looping function is more memory efficient than a recursive function call,
+because at each step of a recursive call, the function is added to the top of
+the call stack. If your function needs to recurse 500 times to work correctly,
+there will be 500 instances of the function on the call stack. In contrast, an
+iterative function will only be placed on the call stack once.
