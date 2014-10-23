@@ -27,15 +27,14 @@ class LinearHashTable {
   T null, del;
   void resize();
   int hash(T x) {
-    return (unsigned)(x % (1 << d));
+    return (unsigned) (x % (1 << d));
   }
   // Sample code for the book only -- never use this
   /*
-  int idealHash(T x) {
-    return tab[hashCode(x) >> w-d];
-  }
-  */
-
+   int idealHash(T x) {
+   return tab[hashCode(x) >> w-d];
+   }
+   */
 
 public:
   // FIXME: get rid of default constructor
@@ -46,41 +45,49 @@ public:
   bool addSlow(T x);
   T remove(T x);
   T find(T x);
-  int size() { return n; }
+  int size() {
+    return n;
+  }
   void clear();
   // FIXME: yuck
-  void setNull(T null) { this->null = null; t.fill(null); }
-  void setDel(T del) { this->del = del; }
+  void setNull(T null) {
+    this->null = null;
+    t.fill(null);
+  }
+  void setDel(T del) {
+    this->del = del;
+  }
 };
 
 /*
-template<>
-LinearHashTable<int>::LinearHashTable() : t(2, INT_MIN) {
-  null = INT_MIN;
-  del = INT_MIN + 1;
-  n = 0;
-  q = 0;
-  d = 1;
-}
-*/
+ template<>
+ LinearHashTable<int>::LinearHashTable() : t(2, INT_MIN) {
+ null = INT_MIN;
+ del = INT_MIN + 1;
+ n = 0;
+ q = 0;
+ d = 1;
+ }
+ */
 
 /**
  * FIXME: Dangerous - leaves null and del uninitialized
  */
 template<class T>
-LinearHashTable<T>::LinearHashTable() : t(2) {
-/*
-  this->null = null;
-  this->del = del;
-*/
+LinearHashTable<T>::LinearHashTable() :
+    t(2) {
+  /*
+   this->null = null;
+   this->del = del;
+   */
   n = 0;
   q = 0;
   d = 1;
 }
 
-
 template<class T>
-LinearHashTable<T>::LinearHashTable(T null, T del) : t(2, null) {
+LinearHashTable<T>::LinearHashTable(T null, T del) :
+    t(2, null) {
   this->null = null;
   this->del = del;
   n = 0;
@@ -95,15 +102,16 @@ LinearHashTable<T>::~LinearHashTable() {
 template<class T>
 void LinearHashTable<T>::resize() {
   d = 1;
-  while ((1<<d) < 3*n) d++;
-  array<T> tnew(1<<d, null);
+  while ((1 << d) < 3 * n)
+    d++;
+  array<T> tnew(1 << d, null);
   q = n;
   // insert everything into tnew
   for (int k = 0; k < t.length; k++) {
     if (t[k] != null && t[k] != del) {
       int i = hash(t[k]);
       while (tnew[i] != null)
-        i = (i == tnew.length-1) ? 0 : i + 1;
+        i = (i == tnew.length - 1) ? 0 : i + 1;
       tnew[i] = t[k];
     }
   }
@@ -121,12 +129,15 @@ void LinearHashTable<T>::clear() {
 
 template<class T>
 bool LinearHashTable<T>::add(T x) {
-  if (find(x) != null) return false;
-  if (2*(q+1) > t.length) resize();   // max 50% occupancy
+  if (find(x) != null)
+    return false;
+  if (2 * (q + 1) > t.length)
+    resize();   // max 50% occupancy
   int i = hash(x);
   while (t[i] != null && t[i] != del)
-    i = (i == t.length-1) ? 0 : i + 1; // increment i
-  if (t[i] == null) q++;
+    i = (i == t.length - 1) ? 0 : i + 1; // increment i
+  if (t[i] == null)
+    q++;
   n++;
   t[i] = x;
   return true;
@@ -136,8 +147,9 @@ template<class T>
 T LinearHashTable<T>::find(T x) {
   int i = hash(x);
   while (t[i] != null) {
-    if (t[i] != del && t[i] == x) return t[i];
-    i = (i == t.length-1) ? 0 : i + 1; // increment i
+    if (t[i] != del && t[i] == x)
+      return t[i];
+    i = (i == t.length - 1) ? 0 : i + 1; // increment i
   }
   return null;
 }
@@ -150,27 +162,30 @@ T LinearHashTable<T>::remove(T x) {
     if (y != del && x == y) {
       t[i] = del;
       n--;
-      if (8*n < t.length) resize(); // min 12.5% occupancy
+      if (8 * n < t.length)
+        resize(); // min 12.5% occupancy
       return y;
     }
-    i = (i == t.length-1) ? 0 : i + 1;  // increment i
+    i = (i == t.length - 1) ? 0 : i + 1;  // increment i
   }
   return null;
 }
 
 template<class T>
 bool LinearHashTable<T>::addSlow(T x) {
-  if (2*(q+1) > t.length) resize();   // max 50% occupancy
+  if (2 * (q + 1) > t.length)
+    resize();   // max 50% occupancy
   int i = hash(x);
   while (t[i] != null) {
-    if (t[i] != del && x.equals(t[i])) return false;
-    i = (i == t.length-1) ? 0 : i + 1; // increment i
+    if (t[i] != del && x.equals(t[i]))
+      return false;
+    i = (i == t.length - 1) ? 0 : i + 1; // increment i
   }
   t[i] = x;
-  n++; q++;
+  n++;
+  q++;
   return true;
 }
-
 
 } /* namespace ods */
 #endif /* LINEARHASHTABLE_H_ */
