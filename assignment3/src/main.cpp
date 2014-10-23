@@ -4,6 +4,7 @@
 //============================================================================
 
 #include "ChainedHashTable.h"
+#include "LinearHashTable.h"
 
 void TestChainedHashTableAdding();
 void TestChainedHashTableLongestList();
