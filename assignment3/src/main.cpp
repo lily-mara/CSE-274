@@ -23,14 +23,14 @@ int main() {
 void TestLinearHashTableAdding() {
   LinearHashTable<int> t(-500, -700);
 
-  t.add(1);
-  t.add(2);
-  t.add(3);
-  t.add(4);
+  for (int i = 2; i < 1000; i*=i) {
+    t.add(i);
+  }
 
   cout << t.find(4) << endl;
   cout << t.find(2) << endl;
   cout << t.find(10) << endl;
+  cout << t.find(99) << endl;
 }
 
 void TestChainedHashTableLongestList() {
