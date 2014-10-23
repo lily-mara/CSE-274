@@ -19,7 +19,9 @@ protected:
 public:
   T get(int i);
   void set(int i, int x);
-  int size();
+  int size() {
+    return front.length + back.length;
+  }
   DualArray(int, T);
   void fill(T);
 };
