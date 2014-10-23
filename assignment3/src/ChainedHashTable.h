@@ -9,7 +9,6 @@
 #define CHAINEDHASHTABLE_H_
 #include <climits>
 #include <algorithm>
-#include "utils.h"
 #include "array.h"
 #include "DLList.h"
 
