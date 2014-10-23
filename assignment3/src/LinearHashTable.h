@@ -98,8 +98,10 @@ void LinearHashTable<T>::resize() {
 
   // move elements out of front array to new position
   for (int k = 0; k < items.size(); k++) {
-    int index = FindOpenPosition(items.get(k), new_items);
-    new_items.set(index, items.get(k));
+    if (items.get(k) != null && items.get(k) != del) {
+      int index = FindOpenPosition(items.get(k), new_items);
+      new_items.set(index, items.get(k));
+    }
   }
 
   items = new_items;
