@@ -41,6 +41,7 @@ public:
     return n;
   }
   void clear();
+  int GetLongestList();
   void SetLocalFactor(float f) {
     load_factor_ = f;
   }
@@ -91,6 +92,10 @@ template<class T>
 ChainedHashTable<T>::~ChainedHashTable() {
 }
 
+template<class T>
+int ChainedHashTable<T>::GetLongestList() {
+  return 0;
+}
 
 template<class T>
 bool ChainedHashTable<T>::add(T x) {
