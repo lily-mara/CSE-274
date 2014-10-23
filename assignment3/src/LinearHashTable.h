@@ -33,12 +33,6 @@ class LinearHashTable {
   int hash2(T x) {
 	  return 1 + (hash(x) % ((1 << d) - 1));
   }
-  // Sample code for the book only -- never use this
-  /*
-   int idealHash(T x) {
-   return tab[hashCode(x) >> w-d];
-   }
-   */
 
 public:
   // FIXME: get rid of default constructor
