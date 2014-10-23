@@ -31,7 +31,7 @@ class LinearHashTable {
     return (unsigned) (x % (1 << d));
   }
   int hash2(T x) {
-	  return 1 + (hash(x) % ((1 << d) - 1));
+    return 1 + (hash(x) % ((1 << d) - 1));
   }
 
 public:
@@ -99,17 +99,31 @@ void LinearHashTable<T>::resize() {
   for (int k = 0; k < front.length; k++) {
     if (front[k] != null && front[k] != del) {
       int i = hash(front[k]);
-      while (new_front[i] != null)
-        i = (i == new_front.length - 1) ? 0 : i + 1;
-      new_front[i] = front[k];
+      if (i < new_front.length) {
+        while (new_front[i] != null)
+          i = (i == new_front.length - 1) ? 0 : i + 1;
+        new_front[i] = front[k];
+      } else {
+        i = i - new_back.length;
+        while (new_back[i] != null)
+          i = (i == new_back.length - 1) ? 0 : i + 1;
+        new_back[i] = front[k];
+      }
     }
   }
   for (int k = 0; k < back.length; k++) {
-    if (back[k] != null && back[k] != del) {
+    if (back[k] != null && front[k] != del) {
       int i = hash(back[k]);
-      while (new_back[i] != null)
-        i = (i == new_back.length - 1) ? 0 : i + 1;
-      new_back[i] = back[k];
+      if (i < new_front.length) {
+        while (new_front[i] != null)
+          i = (i == new_front.length - 1) ? 0 : i + 1;
+        new_front[i] = back[k];
+      } else {
+        i = i - new_back.length;
+        while (new_back[i] != null)
+          i = (i == new_back.length - 1) ? 0 : i + 1;
+        new_back[i] = back[k];
+      }
     }
   }
   front = new_front;
