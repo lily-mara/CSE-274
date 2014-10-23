@@ -23,6 +23,7 @@ protected:
   int n;
   int d;
   int z;
+  float load_factor_;
   static const int w = 32; //sizeof(int)*8;
   void allocTable(int m);
   void resize();
@@ -40,6 +41,9 @@ public:
     return n;
   }
   void clear();
+  void SetLocalFactor(float f) {
+    load_factor_ = f;
+  }
 };
 
 /**
@@ -78,6 +82,7 @@ ChainedHashTable<T>::ChainedHashTable() : t(2) {
   d = 1;
   null = INT_MIN;
   z = rand() | 1;     // is a random odd integer
+  load_factor_ = 1;
 }
 
 
