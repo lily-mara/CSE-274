@@ -208,15 +208,25 @@ T LinearHashTable<T>::remove(T x) {
 
 template<class T>
 bool LinearHashTable<T>::addSlow(T x) {
-  if (2 * (q + 1) > front.length)
+  if (2 * (q + 1) > front.length + back.length)
     resize();   // max 50% occupancy
   int i = hash(x);
-  while (front[i] != null) {
-    if (front[i] != del && x.equals(front[i]))
-      return false;
-    i = (i == front.length - 1) ? 0 : i + 1; // increment i
+  if (i < front.length) {
+    while (front[i] != null) {
+      if (front[i] != del && x.equals(front[i]))
+        return false;
+      i = (i == front.length - 1) ? 0 : i + 1; // increment i
+    }
+    front[i] = x;
+  } else {
+    i = i - back.length;
+    while (back[i] != null) {
+      if (back[i] != del && x.equals(front[i]))
+        return false;
+      i = (i == back.length - 1) ? 0 : i + 1; // increment i
+    }
+    back[i] = x;
   }
-  front[i] = x;
   n++;
   q++;
   return true;
