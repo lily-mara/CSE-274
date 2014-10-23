@@ -1,0 +1,16 @@
+import sys
+if 'win' in sys.platform:
+	env = Environment(tools = ['mingw'])
+	name = 'hash'
+else:
+	env = Environment()
+	name = 'hash.out'
+
+env.Append(
+	CXXFLAGS=[
+		'-g',
+		'-Wall',
+	]
+)
+
+target = env.Program(name, Glob('src/*.cpp'))
