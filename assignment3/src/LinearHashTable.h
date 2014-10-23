@@ -20,7 +20,8 @@ class LinearHashTable {
 
   static const int w = 32;
   static const int r = 8;
-  array<T> t;
+  array<T> front;
+  array<T> back;
   int n;   // number of values in T
   int q;   // number of non-null entries in T
   int d;   // t.length = 2^d
@@ -52,7 +53,8 @@ public:
   // FIXME: yuck
   void setNull(T null) {
     this->null = null;
-    t.fill(null);
+    front.fill(null);
+    back.fill(null);
   }
   void setDel(T del) {
     this->del = del;
@@ -75,24 +77,24 @@ public:
  */
 template<class T>
 LinearHashTable<T>::LinearHashTable() :
-    t(2) {
+    front(2), back(2) {
   /*
    this->null = null;
    this->del = del;
    */
   n = 0;
   q = 0;
-  d = 1;
+  d = 2;
 }
 
 template<class T>
 LinearHashTable<T>::LinearHashTable(T null, T del) :
-    t(2, null) {
+    front(2, null), back(2, null) {
   this->null = null;
   this->del = del;
   n = 0;
   q = 0;
-  d = 1;
+  d = 2;
 }
 
 template<class T>
@@ -107,15 +109,15 @@ void LinearHashTable<T>::resize() {
   array<T> tnew(1 << d, null);
   q = n;
   // insert everything into tnew
-  for (int k = 0; k < t.length; k++) {
-    if (t[k] != null && t[k] != del) {
-      int i = hash(t[k]);
+  for (int k = 0; k < front.length; k++) {
+    if (front[k] != null && front[k] != del) {
+      int i = hash(front[k]);
       while (tnew[i] != null)
         i = (i == tnew.length - 1) ? 0 : i + 1;
-      tnew[i] = t[k];
+      tnew[i] = front[k];
     }
   }
-  t = tnew;
+  front = tnew;
 }
 
 template<class T>
@@ -124,32 +126,32 @@ void LinearHashTable<T>::clear() {
   q = 0;
   d = 1;
   array<T> tnew(2, null);
-  t = tnew;
+  front = tnew;
 }
 
 template<class T>
 bool LinearHashTable<T>::add(T x) {
   if (find(x) != null)
     return false;
-  if (2 * (q + 1) > t.length)
+  if (2 * (q + 1) > front.length)
     resize();   // max 50% occupancy
   int i = hash(x);
-  while (t[i] != null && t[i] != del)
-    i = (i == t.length - 1) ? 0 : i + 1; // increment i
-  if (t[i] == null)
+  while (front[i] != null && front[i] != del)
+    i = (i == front.length - 1) ? 0 : i + 1; // increment i
+  if (front[i] == null)
     q++;
   n++;
-  t[i] = x;
+  front[i] = x;
   return true;
 }
 
 template<class T>
 T LinearHashTable<T>::find(T x) {
   int i = hash(x);
-  while (t[i] != null) {
-    if (t[i] != del && t[i] == x)
-      return t[i];
-    i = (i == t.length - 1) ? 0 : i + 1; // increment i
+  while (front[i] != null) {
+    if (front[i] != del && front[i] == x)
+      return front[i];
+    i = (i == front.length - 1) ? 0 : i + 1; // increment i
   }
   return null;
 }
@@ -157,31 +159,31 @@ T LinearHashTable<T>::find(T x) {
 template<class T>
 T LinearHashTable<T>::remove(T x) {
   int i = hash(x);
-  while (t[i] != null) {
-    T y = t[i];
+  while (front[i] != null) {
+    T y = front[i];
     if (y != del && x == y) {
-      t[i] = del;
+      front[i] = del;
       n--;
-      if (8 * n < t.length)
+      if (8 * n < front.length)
         resize(); // min 12.5% occupancy
       return y;
     }
-    i = (i == t.length - 1) ? 0 : i + 1;  // increment i
+    i = (i == front.length - 1) ? 0 : i + 1;  // increment i
   }
   return null;
 }
 
 template<class T>
 bool LinearHashTable<T>::addSlow(T x) {
-  if (2 * (q + 1) > t.length)
+  if (2 * (q + 1) > front.length)
     resize();   // max 50% occupancy
   int i = hash(x);
-  while (t[i] != null) {
-    if (t[i] != del && x.equals(t[i]))
+  while (front[i] != null) {
+    if (front[i] != del && x.equals(front[i]))
       return false;
-    i = (i == t.length - 1) ? 0 : i + 1; // increment i
+    i = (i == front.length - 1) ? 0 : i + 1; // increment i
   }
-  t[i] = x;
+  front[i] = x;
   n++;
   q++;
   return true;
