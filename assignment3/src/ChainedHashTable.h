@@ -52,7 +52,7 @@ public:
 template<class T>
 void ChainedHashTable<T>::resize() {
   d = 1;
-  while (1<<d <= n) d++;
+  while (1<<d <= n / load_factor_) d++;
 
   array<List> newTable(1<<d);
   for (int i = 0; i < t.length; i++) {
@@ -95,7 +95,7 @@ ChainedHashTable<T>::~ChainedHashTable() {
 template<class T>
 bool ChainedHashTable<T>::add(T x) {
   if (find(x) != null) return false;
-  if (n+1 > t.length) resize();
+  if ((n+1.0) / t.length > load_factor_) resize();
   t[hash(x)].add(x);
   n++;
   return true;
