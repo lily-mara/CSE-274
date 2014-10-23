@@ -29,7 +29,7 @@ protected:
   void allocTable(int m);
   void resize();
   int hash(T x) {
-    return (unsigned)(x % (1 << d));
+    return (unsigned) (x % (1 << d));
   }
 
 public:
@@ -54,9 +54,10 @@ public:
 template<class T>
 void ChainedHashTable<T>::resize() {
   d = 1;
-  while (1<<d <= n / load_factor_) d++;
+  while (1 << d <= n / load_factor_)
+    d++;
 
-  array<List> newTable(1<<d);
+  array<List> newTable(1 << d);
   for (int i = 0; i < t.length; i++) {
     for (int j = 0; j < t[i].size(); j++) {
       T x = t[i].get(j);
@@ -67,27 +68,25 @@ void ChainedHashTable<T>::resize() {
 }
 
 /*
-template<>
-ChainedHashTable<int>::ChainedHashTable() : t(2)
-{
-  n = 0;
-  d = 1;
-  null = INT_MIN;
-  z = rand() | 1;     // is a random odd integer
-}
-*/
-
+ template<>
+ ChainedHashTable<int>::ChainedHashTable() : t(2)
+ {
+ n = 0;
+ d = 1;
+ null = INT_MIN;
+ z = rand() | 1;     // is a random odd integer
+ }
+ */
 
 template<class T>
-ChainedHashTable<T>::ChainedHashTable() : t(2) {
+ChainedHashTable<T>::ChainedHashTable() :
+    t(2) {
   n = 0;
   d = 1;
   null = INT_MIN;
   z = rand() | 1;     // is a random odd integer
   load_factor_ = 1;
 }
-
-
 
 template<class T>
 ChainedHashTable<T>::~ChainedHashTable() {
@@ -105,13 +104,14 @@ int ChainedHashTable<T>::GetLongestList() {
 
 template<class T>
 bool ChainedHashTable<T>::add(T x) {
-  if (find(x) != null) return false;
-  if ((n+1.0) / t.length > load_factor_) resize();
+  if (find(x) != null)
+    return false;
+  if ((n + 1.0) / t.length > load_factor_)
+    resize();
   t[hash(x)].add(x);
   n++;
   return true;
 }
-
 
 template<class T>
 T ChainedHashTable<T>::remove(T x) {
@@ -127,7 +127,6 @@ T ChainedHashTable<T>::remove(T x) {
   return null;
 }
 
-
 template<class T>
 T ChainedHashTable<T>::find(T x) {
   int j = hash(x);
@@ -136,7 +135,6 @@ T ChainedHashTable<T>::find(T x) {
       return t[j].get(i);
   return null;
 }
-
 
 template<class T>
 void ChainedHashTable<T>::clear() {
