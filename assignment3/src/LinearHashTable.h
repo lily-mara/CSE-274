@@ -136,15 +136,25 @@ template<class T>
 bool LinearHashTable<T>::add(T x) {
   if (find(x) != null)
     return false;
-  if (2 * (q + 1) > front.length)
+  if (2 * (q + 1) > front.length + back.length)
     resize();   // max 50% occupancy
   int i = hash(x);
-  while (front[i] != null && front[i] != del)
-    i = (i == front.length - 1) ? 0 : i + 1; // increment i
-  if (front[i] == null)
-    q++;
+
+  if (i < front.length) {
+    while (front[i] != null && front[i] != del)
+      i = (i == front.length - 1) ? 0 : i + 1; // increment i
+    if (front[i] == null)
+      q++;
+    front[i] = x;
+  } else {
+    i = i - front.length;
+    while (back[i] != null && back[i] != del)
+      i = (i == back.length - 1) ? 0 : i + 1; // increment i
+    if (back[i] == null)
+      q++;
+    back[i] = x;
+  }
   n++;
-  front[i] = x;
   return true;
 }
 
