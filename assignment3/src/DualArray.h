@@ -21,6 +21,7 @@ public:
   void set(int i, int x);
   int size();
   DualArray(int, T);
+  void fill(T);
 };
 
 template<class T>
@@ -31,19 +32,29 @@ DualArray<T>::DualArray(int size, T initial) :
 
 template <class T>
 T DualArray<T>::get(int i) {
-  if (i < front.size) {
+  if (i < front.length) {
     return front[i];
   } else {
-    return back[i-front.size];
+    return back[i-front.length];
   }
 }
 
 template <class T>
 void DualArray<T>::set(int i, int x) {
-  if (i < front.size) {
+  if (i < front.length) {
     front[i] = x;
   } else {
-    back[i-front.size] = x;
+    back[i-front.length] = x;
+  }
+}
+
+template <class T>
+void DualArray<T>::fill(T x) {
+  for (int i = 0; i < front.length; i++) {
+    front[i] = x;
+  }
+  for (int i = 0; i < back.length; i++) {
+    back[i] = x;
   }
 }
 
