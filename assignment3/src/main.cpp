@@ -4,17 +4,33 @@
 //============================================================================
 
 #include "ChainedHashTable.h"
+#include "LinearHashTable.h"
 
 void TestChainedHashTableAdding();
+void TestLinearHashTableAdding();
 void TestChainedHashTableLongestList();
 
 using namespace std;
 using namespace ods;
 
 int main() {
-  TestChainedHashTableLongestList();
-//  TestChainedHashTableAdding();
+  TestLinearHashTableAdding();
+//   TestChainedHashTableLongestList();
+//   TestChainedHashTableAdding();
   return 0;
+}
+
+void TestLinearHashTableAdding() {
+  LinearHashTable<int> t;
+
+  t.add(1);
+  t.add(2);
+  t.add(3);
+  t.add(4);
+
+  cout << t.find(1) << endl;
+  cout << t.find(2) << endl;
+  cout << t.find(10) << endl;
 }
 
 void TestChainedHashTableLongestList() {
