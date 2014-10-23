@@ -61,17 +61,6 @@ public:
   }
 };
 
-/*
- template<>
- LinearHashTable<int>::LinearHashTable() : t(2, INT_MIN) {
- null = INT_MIN;
- del = INT_MIN + 1;
- n = 0;
- q = 0;
- d = 1;
- }
- */
-
 /**
  * FIXME: Dangerous - leaves null and del uninitialized
  */
