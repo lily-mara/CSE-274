@@ -145,10 +145,10 @@ void LinearHashTable<T>::clear() {
 
 template<class T>
 bool LinearHashTable<T>::add(T x) {
-  if (find(x) != null)
-    return false;
   if (2 * (q + 1) > front.length + back.length)
     resize();   // max 50% occupancy
+  if (find(x) != null)
+    return false;
   int i = hash(x);
 
   if (i < front.length) {
