@@ -124,8 +124,12 @@ void LinearHashTable<T>::clear() {
   n = 0;
   q = 0;
   d = 1;
-  array<T> tnew(2, null);
-  front = tnew;
+
+  array<T> new_front(2, null);
+  front = new_front;
+
+  array<T> new_back(2, null);
+  back = new_back;
 }
 
 template<class T>
