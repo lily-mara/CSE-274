@@ -161,10 +161,19 @@ bool LinearHashTable<T>::add(T x) {
 template<class T>
 T LinearHashTable<T>::find(T x) {
   int i = hash(x);
-  while (front[i] != null) {
-    if (front[i] != del && front[i] == x)
-      return front[i];
-    i = (i == front.length - 1) ? 0 : i + 1; // increment i
+  if (i < front.length) {
+    while (front[i] != null) {
+      if (front[i] != del && front[i] == x)
+        return front[i];
+      i = (i == front.length - 1) ? 0 : i + 1; // increment i
+    }
+  } else {
+    i = i - front.length;
+    while (back[i] != null) {
+      if (back[i] != del && back[i] == x)
+        return back[i];
+      i = (i == back.length - 1) ? 0 : i + 1; // increment i
+    }
   }
   return null;
 }
