@@ -13,14 +13,15 @@ using namespace ods;
 
 int main() {
   TestChainedHashTableLongestList();
-  // TestChainedHashTableAdding();
+//  TestChainedHashTableAdding();
   return 0;
 }
 
 void TestChainedHashTableLongestList() {
   ChainedHashTable<int> t;
+  t.SetLocalFactor(3);
   for (int i = 0; i < 1000; i++) {
-    t.add(4);
+    t.add(i);
   }
   cout << t.GetLongestList() << endl;
 }
