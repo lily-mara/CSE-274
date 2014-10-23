@@ -28,7 +28,7 @@ protected:
   void allocTable(int m);
   void resize();
   int hash(T x) {
-    return ((unsigned)(z * hashCode(x))) >> (w-d);
+    return (unsigned)x % n;
   }
 
 public:
