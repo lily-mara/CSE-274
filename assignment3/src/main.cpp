@@ -20,10 +20,10 @@ int main() {
 void TestChainedHashTableLongestList() {
   ChainedHashTable<int> t;
   t.SetLocalFactor(3);
-  for (int i = 0; i < 1000; i++) {
+  for (int i = 0; i < 10000; i++) {
     t.add(i);
   }
-  cout << t.GetLongestList() << endl;
+  cout << "Longest list (1 < x < 3): " << t.GetLongestList() << endl;
 }
 
 void TestChainedHashTableAdding() {
