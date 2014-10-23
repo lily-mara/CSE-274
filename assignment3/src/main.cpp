@@ -5,32 +5,54 @@
 
 #include "ChainedHashTable.h"
 #include "LinearHashTable.h"
+#include <assert.h>
 
 void TestChainedHashTableAdding();
 void TestLinearHashTableAdding();
 void TestChainedHashTableLongestList();
+void TestLinearHashTableAddSlow();
 
 using namespace std;
 using namespace ods;
 
 int main() {
   TestLinearHashTableAdding();
+  TestLinearHashTableAddSlow();
 //  TestChainedHashTableLongestList();
 //  TestChainedHashTableAdding();
   return 0;
 }
 
 void TestLinearHashTableAdding() {
-  LinearHashTable<int> t(-500, -700);
+  int null = -5000;
+  int del = -7000;
+  LinearHashTable<int> t(null, del);
 
-  for (int i = 2; i < 1000; i*=i) {
-    t.add(i);
-  }
+  t.add(4);
+  t.add(5);
+  t.add(100008);
 
-  cout << t.find(4) << endl;
-  cout << t.find(2) << endl;
-  cout << t.find(10) << endl;
-  cout << t.find(99) << endl;
+  assert(t.find(5) == 5);
+  assert(t.find(7) == null);
+  assert(t.find(4) == 4);
+  assert(t.find(100008) == 100008);
+  assert(t.find(1000) == null);
+}
+
+void TestLinearHashTableAddSlow() {
+  int null = -5000;
+  int del = -7000;
+  LinearHashTable<int> t(null, del);
+
+  t.addSlow(4);
+  t.addSlow(5);
+  t.addSlow(100008);
+
+  assert(t.find(5) == 5);
+  assert(t.find(7) == null);
+  assert(t.find(4) == 4);
+  assert(t.find(100008) == 100008);
+  assert(t.find(1000) == null);
 }
 
 void TestChainedHashTableLongestList() {
