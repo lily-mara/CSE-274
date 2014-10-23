@@ -6,13 +6,23 @@
 #include "ChainedHashTable.h"
 
 void TestChainedHashTableAdding();
+void TestChainedHashTableLongestList();
 
 using namespace std;
 using namespace ods;
 
 int main() {
-  TestChainedHashTableAdding();
+  TestChainedHashTableLongestList();
+  // TestChainedHashTableAdding();
   return 0;
+}
+
+void TestChainedHashTableLongestList() {
+  ChainedHashTable<int> t;
+  for (int i = 0; i < 1000; i++) {
+    t.add(4);
+  }
+  cout << t.GetLongestList() << endl;
 }
 
 void TestChainedHashTableAdding() {
