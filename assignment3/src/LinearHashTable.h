@@ -111,7 +111,7 @@ void LinearHashTable<T>::resize() {
         i = i - new_back.length;
         while (new_back[i] != null) {
           i++;
-          index = (hash(back[k]) + i*hash2(back[k])) % m;
+          index = (hash(front[k]) + i*hash2(front[k])) % m;
         }
         new_back[index] = front[k];
       }
@@ -121,16 +121,22 @@ void LinearHashTable<T>::resize() {
   // move elements out of back array to new position
   for (int k = 0; k < back.length; k++) {
     if (back[k] != null && front[k] != del) {
-      int i = hash(back[k]);
+      int i = 0;
+      int m = 1 << d;
+      int index = (hash(back[k]) + i*hash2(back[k])) % m;
       if (i < new_front.length) {
-        while (new_front[i] != null)
-          i = (i == new_front.length - 1) ? 0 : i + 1;
-        new_front[i] = back[k];
+        while (new_front[i] != null) {
+          i++;
+          index = (hash(back[k]) + i*hash2(back[k])) % m;
+        }
+        new_front[index] = back[k];
       } else {
         i = i - new_back.length;
-        while (new_back[i] != null)
-          i = (i == new_back.length - 1) ? 0 : i + 1;
-        new_back[i] = back[k];
+        while (new_back[i] != null) {
+          i++;
+          index = (hash(front[k]) + i*hash2(front[k])) % m;
+        }
+        new_back[index] = back[k];
       }
     }
   }
