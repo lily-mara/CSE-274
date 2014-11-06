@@ -1,0 +1,1 @@
+A Red-Black Tree garuntees O(log(n)) find operations even after the initial add/remove operations. If you were to add a randomized set of numbers to a BST, any add/removes after that initial add would generate a tree that did not nesecarily have O(log(n)) complexity. Since a R-B tree is always re-arranged, it will always have a complexity of O(log(n)).
