@@ -11,6 +11,7 @@
 #include <iostream>
 using namespace std;
 #include "array.h"
+#include "DualArray.h"
 namespace ods {
 
 extern unsigned int tab[4][256];
@@ -20,22 +21,20 @@ class LinearHashTable {
 
   static const int w = 32;
   static const int r = 8;
-  array<T> front;
-  array<T> back;
-  int n;   // number of values in T
-  int q;   // number of non-null entries in T
+  DualArray<T> items;
+  int n;   // number of values in this hash table
+  int q;   // number of non-null entries in this hash table
   int d;   // t.length = 2^d
   T null, del;
   void resize();
   int hash(T x) {
     return (unsigned) (x % (1 << d));
   }
-  // Sample code for the book only -- never use this
-  /*
-   int idealHash(T x) {
-   return tab[hashCode(x) >> w-d];
-   }
-   */
+  int hash2(T x) {
+    return 1 + (hash(x) % ((1 << d) - 1));
+  }
+  int FindOpenPosition(T x);
+  int FindOpenPosition(T x, DualArray<T> &some_array);
 
 public:
   // FIXME: get rid of default constructor
@@ -53,8 +52,7 @@ public:
   // FIXME: yuck
   void setNull(T null) {
     this->null = null;
-    front.fill(null);
-    back.fill(null);
+    items.fill(null);
   }
   void setDel(T del) {
     this->del = del;
@@ -66,24 +64,24 @@ public:
  */
 template<class T>
 LinearHashTable<T>::LinearHashTable() :
-    front(2), back(2) {
+    items(2) {
   /*
    this->null = null;
    this->del = del;
    */
   n = 0;
   q = 0;
-  d = 2;
+  d = 1;
 }
 
 template<class T>
 LinearHashTable<T>::LinearHashTable(T null, T del) :
-    front(2, null), back(2, null) {
+    items(2, null) {
   this->null = null;
   this->del = del;
   n = 0;
   q = 0;
-  d = 2;
+  d = 1;
 }
 
 template<class T>
@@ -95,28 +93,36 @@ void LinearHashTable<T>::resize() {
   d = 1;
   while ((1 << d) < 3 * n)
     d++;
-  array<T> new_front((1 << d) >> 1, null);
-  array<T> new_back((1 << d) >> 1, null);
+  DualArray<T> new_items((1 << d), null);
   q = n;
-  // insert everything into tnew
-  for (int k = 0; k < front.length; k++) {
-    if (front[k] != null && front[k] != del) {
-      int i = hash(front[k]);
-      while (new_front[i] != null)
-        i = (i == new_front.length - 1) ? 0 : i + 1;
-      new_front[i] = front[k];
+
+  // move elements out of front array to new position
+  for (int k = 0; k < items.size(); k++) {
+    if (items.get(k) != null && items.get(k) != del) {
+      int index = FindOpenPosition(items.get(k), new_items);
+      new_items.set(index, items.get(k));
     }
   }
-  for (int k = 0; k < back.length; k++) {
-    if (back[k] != null && back[k] != del) {
-      int i = hash(back[k]);
-      while (new_back[i] != null)
-        i = (i == new_back.length - 1) ? 0 : i + 1;
-      new_back[i] = back[k];
-    }
+
+  items = new_items;
+}
+
+template<class T>
+int LinearHashTable<T>::FindOpenPosition(T x, DualArray<T> &some_array) {
+  int i = 0;
+  int m = 1 << d;
+  int index = (hash(x) + i * hash2(x)) % m;
+
+  while (some_array.get(index) != null && some_array.get(index) != del) {
+    i++;
+    index = (hash(x) + i * hash2(x)) % some_array.size();
   }
-  front = new_front;
-  back = new_back;
+  return index;
+}
+
+template<class T>
+int LinearHashTable<T>::FindOpenPosition(T x) {
+  return FindOpenPosition(x, items);
 }
 
 template<class T>
@@ -125,87 +131,77 @@ void LinearHashTable<T>::clear() {
   q = 0;
   d = 1;
 
-  array<T> new_front(2, null);
-  front = new_front;
-
-  array<T> new_back(2, null);
-  back = new_back;
+  DualArray<T> new_items(2, null);
+  items = new_items;
 }
 
 template<class T>
 bool LinearHashTable<T>::add(T x) {
+  if (2 * (q + 1) > items.size())
+    resize();   // max 50% occupancy
   if (find(x) != null)
     return false;
-  if (2 * (q + 1) > front.length + back.length)
-    resize();   // max 50% occupancy
-  int i = hash(x);
 
-  if (i < front.length) {
-    while (front[i] != null && front[i] != del)
-      i = (i == front.length - 1) ? 0 : i + 1; // increment i
-    if (front[i] == null)
-      q++;
-    front[i] = x;
-  } else {
-    i = i - front.length;
-    while (back[i] != null && back[i] != del)
-      i = (i == back.length - 1) ? 0 : i + 1; // increment i
-    if (back[i] == null)
-      q++;
-    back[i] = x;
-  }
+  int index = FindOpenPosition(x);
+
+  if (items.get(index) == null)
+    q++;
+  items.set(index, x);
+
   n++;
   return true;
 }
 
 template<class T>
 T LinearHashTable<T>::find(T x) {
-  int i = hash(x);
-  if (i < front.length) {
-    while (front[i] != null) {
-      if (front[i] != del && front[i] == x)
-        return front[i];
-      i = (i == front.length - 1) ? 0 : i + 1; // increment i
-    }
-  } else {
-    i = i - front.length;
-    while (back[i] != null) {
-      if (back[i] != del && back[i] == x)
-        return back[i];
-      i = (i == back.length - 1) ? 0 : i + 1; // increment i
-    }
+  int i = 0;
+  int m = 1 << d;
+  int index = (hash(x) + i * hash2(x)) % m;
+
+  while (items.get(index) != null) {
+    if (items.get(index) != del && items.get(index) == x)
+      return items.get(index);
+    i++;
+    index = (hash(x) + i * hash2(x)) % items.size();
   }
+
   return null;
 }
 
 template<class T>
 T LinearHashTable<T>::remove(T x) {
-  int i = hash(x);
-  while (front[i] != null) {
-    T y = front[i];
+  int i = 0;
+  int m = 1 << d;
+  int index = (hash(x) + i * hash2(x)) % m;
+
+  while (items.get(index) != null) {
+    T y = items.get(index);
     if (y != del && x == y) {
-      front[i] = del;
+      items.set(index, del);
       n--;
-      if (8 * n < front.length)
+      if (8 * n < items.size())
         resize(); // min 12.5% occupancy
       return y;
     }
-    i = (i == front.length - 1) ? 0 : i + 1;  // increment i
+    i++;
+    index = (hash(x) + i * hash2(x)) % items.size();
   }
   return null;
 }
 
 template<class T>
 bool LinearHashTable<T>::addSlow(T x) {
-  if (2 * (q + 1) > front.length)
+  if (2 * (q + 1) > items.size())
     resize();   // max 50% occupancy
   int i = hash(x);
-  while (front[i] != null) {
-    if (front[i] != del && x.equals(front[i]))
+
+  while (items.get(i) != null) {
+    if (items.get(i) != del && x == items.get(i))
       return false;
-    i = (i == front.length - 1) ? 0 : i + 1; // increment i
+    i = (i == items.size() - 1) ? 0 : i + 1; // increment i
   }
-  front[i] = x;
+  items.set(i, x);
+
   n++;
   q++;
   return true;
