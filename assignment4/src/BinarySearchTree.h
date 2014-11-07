@@ -57,6 +57,7 @@ public:
   virtual void preOrderNumber();
   virtual void inOrderNumber();
   virtual void postOrderNumbers();
+  virtual Node* getNode(T);
 };
 
 template<class T>
@@ -77,6 +78,23 @@ public:
  n = 0;
  }
  */
+
+template<class Node, class T>
+Node* BinarySearchTree<Node, T>::getNode(T x) {
+  Node *w = r, *z = nil;
+  while (w != nil) {
+    int comp = compare(x, w->x);
+    if (comp < 0) {
+      z = w;
+      w = w->left;
+    } else if (comp > 0) {
+      w = w->right;
+    } else {
+      return w->x;
+    }
+  }
+  return z;
+}
 
 template<class Node, class T>
 void BinarySearchTree<Node, T>::preOrderNumber() {
