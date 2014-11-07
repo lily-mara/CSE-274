@@ -34,21 +34,21 @@ int main() {
 void TestBinarySearchTreeGetLE() {
   BinarySearchTree<BSTNode1<int>, int> b;
 
-    b.add(4);
-    b.add(2);
-    b.add(5);
-    b.add(1);
-    b.add(3);
-    b.add(6);
+  b.add(4);
+  b.add(2);
+  b.add(5);
+  b.add(1);
+  b.add(3);
+  b.add(6);
 
-    DLList<int> l = b.getLE(3);
+  DLList<int> l = b.getLE(3);
 
-    assert(l.contains(1));
-    assert(l.contains(2));
-    assert(l.contains(3));
-    assert(!l.contains(4));
-    assert(!l.contains(5));
-    assert(!l.contains(6));
+  assert(l.contains(1));
+  assert(l.contains(2));
+  assert(l.contains(3));
+  assert(!l.contains(4));
+  assert(!l.contains(5));
+  assert(!l.contains(6));
 }
 
 void TestBinarySearchTreePreOrder() {
@@ -114,7 +114,7 @@ void TestBinarySearchTreePostOrder() {
 void TestBinaryTreeSize2() {
   BinarySearchTree<BSTNode1<int>, int> b;
 
-  for(int i = 0; i < 10000; i++) {
+  for (int i = 0; i < 10000; i++) {
     b.add(rand() % 100000);
   }
 
