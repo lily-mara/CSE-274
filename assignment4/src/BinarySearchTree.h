@@ -18,6 +18,9 @@ template<class Node, class T>
 class BSTNode: public BTNode<Node> {
 public:
   T x;
+  int pre_order_;
+  int in_order_;
+  int post_order_;
 };
 
 /**
@@ -38,6 +41,9 @@ protected:
   virtual void rotateRight(Node *u);
   virtual void rotateLeft(Node *u);
   virtual bool add(Node *u);
+  virtual void preOrderNumber(Node*);
+  virtual void inOrderNumber(Node*);
+  virtual void postOrderNumbers(Node*);
 public:
   BinarySearchTree();
   BinarySearchTree(T null);
@@ -48,6 +54,9 @@ public:
   virtual T findEQ(T x);
   virtual int size();
   virtual void clear();
+  virtual void preOrderNumber();
+  virtual void inOrderNumber();
+  virtual void postOrderNumbers();
 };
 
 template<class T>
@@ -68,6 +77,36 @@ public:
  n = 0;
  }
  */
+
+template<class Node, class T>
+void BinarySearchTree<Node, T>::preOrderNumber() {
+  preOrderNumber(r);
+}
+
+template<class Node, class T>
+void BinarySearchTree<Node, T>::preOrderNumber(Node* u) {
+
+}
+
+template<class Node, class T>
+void BinarySearchTree<Node, T>::inOrderNumber() {
+  inOrderNumber(r);
+}
+
+template<class Node, class T>
+void BinarySearchTree<Node, T>::inOrderNumber(Node* u) {
+
+}
+
+template<class Node, class T>
+void BinarySearchTree<Node, T>::postOrderNumbers() {
+  postOrderNumbers(r);
+}
+
+template<class Node, class T>
+void BinarySearchTree<Node, T>::postOrderNumbers(Node* u) {
+
+}
 
 template<class Node, class T>
 BinarySearchTree<Node, T>::BinarySearchTree() {
