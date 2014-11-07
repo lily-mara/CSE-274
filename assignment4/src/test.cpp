@@ -24,7 +24,7 @@ int main() {
 void TestBinaryTreeSize2() {
   BinarySearchTree<BSTNode1<int>, int> b;
 
-  for(int i = 0; i < 1000; i++) {
+  for(int i = 0; i < 10000; i++) {
     b.add(rand() % 100000);
   }
 
