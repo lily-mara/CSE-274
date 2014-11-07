@@ -28,5 +28,5 @@ void TestBinaryTreeSize2() {
     b.add(rand() % 100000);
   }
 
-  assert(b.height2(b.getRoot()) == b.size());
+  assert(b.height2(b.getRoot()) == b.height());
 }
