@@ -102,7 +102,11 @@ void BinarySearchTree<Node, T>::print(Node* u, int x) {
 
 template<class Node, class T>
 DLList<T> BinarySearchTree<Node, T>::getLE(T x) {
-  return *getLE(x, r);
+  DLList<T>* temp = getLE(x, r);
+  DLList<T> l;
+  l.absorb(temp);
+  delete temp;
+  return l;
 }
 
 template<class Node, class T>
