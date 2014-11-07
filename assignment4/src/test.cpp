@@ -19,6 +19,7 @@ void TestBinaryTreeIsBalanced();
 void TestBinarySearchTreePreOrder();
 void TestBinarySearchTreeInOrder();
 void TestBinarySearchTreePostOrder();
+void TestBinarySearchTreeGetLE();
 
 int main() {
   TestBinaryTreeSize2();
@@ -26,7 +27,28 @@ int main() {
   TestBinarySearchTreePreOrder();
   TestBinarySearchTreeInOrder();
   TestBinarySearchTreePostOrder();
+  TestBinarySearchTreeGetLE();
   return 0;
+}
+
+void TestBinarySearchTreeGetLE() {
+  BinarySearchTree<BSTNode1<int>, int> b;
+
+    b.add(4);
+    b.add(2);
+    b.add(5);
+    b.add(1);
+    b.add(3);
+    b.add(6);
+
+    DLList<int> l = b.getLE(3);
+
+    assert(l.contains(1));
+    assert(l.contains(2));
+    assert(l.contains(3));
+    assert(!l.contains(4));
+    assert(!l.contains(5));
+    assert(!l.contains(6));
 }
 
 void TestBinarySearchTreePreOrder() {
