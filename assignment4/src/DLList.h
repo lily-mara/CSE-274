@@ -37,6 +37,7 @@ public:
   virtual T remove(int i);
   virtual void clear();
   virtual bool contains(T);
+  virtual void absorb(DLList<T>&);
 };
 
 template<class T>
@@ -118,6 +119,26 @@ bool DLList<T>::contains(T x) {
     }
   }
   return false;
+}
+
+template<class T>
+void DLList<T>::absorb(DLList<T> &l2) {
+  Node* thisTail = dummy.prev;
+
+  Node* otherTail = l2.dummy.prev;
+  Node* otherHead = l2.dummy.next;
+
+  thisTail->next = otherHead;
+  otherHead->prev = thisTail;
+
+  otherTail->next = &dummy;
+  dummy.prev = otherTail;
+
+  l2.dummy.next = &(l2.dummy);
+  l2.dummy.prev = &(l2.dummy);
+
+  n += l2.n;
+  l2.n = 0;
 }
 
 template<class T>
