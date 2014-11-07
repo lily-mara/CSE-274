@@ -15,9 +15,11 @@ using namespace std;
 using namespace ods;
 
 void TestBinaryTreeSize2();
+void TestBinaryTreeIsBalanced();
 
 int main() {
   TestBinaryTreeSize2();
+  TestBinaryTreeIsBalanced();
   return 0;
 }
 
@@ -29,4 +31,17 @@ void TestBinaryTreeSize2() {
   }
 
   assert(b.height2(b.getRoot()) == b.height());
+}
+
+void TestBinaryTreeIsBalanced() {
+  BinarySearchTree<BSTNode1<int>, int> b;
+
+  b.add(4);
+  b.add(2);
+  b.add(5);
+  b.add(1);
+  b.add(3);
+  b.add(6);
+
+  assert(b.isBalanced());
 }
