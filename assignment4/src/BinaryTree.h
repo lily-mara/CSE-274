@@ -33,6 +33,7 @@ protected:
   virtual int height(Node *u);
   virtual void traverse(Node *u);
   virtual bool isBalanced(Node *u);
+  virtual int subtreeElements(Node *u);
 public:
   virtual ~BinaryTree();
   BinaryTree();
@@ -105,12 +106,24 @@ int BinaryTree<Node>::height2(Node* u) {
 
 template<class Node>
 bool BinaryTree<Node>::isBalanced() {
-  return false;
+  return isBalanced(r);
+}
+
+template<class Node>
+int BinaryTree<Node>::subtreeElements(Node *u) {
+  if (u == nil)
+    return 0;
+  return 1 + subtreeElements(u->left) + subtreeElements(u->right);
 }
 
 template<class Node>
 bool BinaryTree<Node>::isBalanced(Node *u) {
-  return false;
+  if (abs(subtreeElements(u->left) - subtreeElements(u->right)) > 1) {
+    return false;
+  } else {
+    return true;
+  }
+  return isBalanced(u->left) && isBalanced(u->right);
 }
 
 template<class Node>
