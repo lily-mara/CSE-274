@@ -17,11 +17,15 @@ using namespace ods;
 void TestBinaryTreeSize2();
 void TestBinaryTreeIsBalanced();
 void TestBinarySearchTreePreOrder();
+void TestBinarySearchTreeInOrder();
+void TestBinarySearchTreePostOrder();
 
 int main() {
   TestBinaryTreeSize2();
   TestBinaryTreeIsBalanced();
   TestBinarySearchTreePreOrder();
+  TestBinarySearchTreeInOrder();
+  TestBinarySearchTreePostOrder();
   return 0;
 }
 
@@ -43,6 +47,46 @@ void TestBinarySearchTreePreOrder() {
   assert(b.getNode(3)->pre_order_ == 3);
   assert(b.getNode(5)->pre_order_ == 4);
   assert(b.getNode(6)->pre_order_ == 5);
+}
+
+void TestBinarySearchTreeInOrder() {
+  BinarySearchTree<BSTNode1<int>, int> b;
+
+  b.add(4);
+  b.add(2);
+  b.add(5);
+  b.add(1);
+  b.add(3);
+  b.add(6);
+
+  b.inOrderNumber();
+
+  assert(b.getNode(1)->in_order_ == 0);
+  assert(b.getNode(2)->in_order_ == 1);
+  assert(b.getNode(3)->in_order_ == 2);
+  assert(b.getNode(4)->in_order_ == 3);
+  assert(b.getNode(5)->in_order_ == 4);
+  assert(b.getNode(6)->in_order_ == 5);
+}
+
+void TestBinarySearchTreePostOrder() {
+  BinarySearchTree<BSTNode1<int>, int> b;
+
+  b.add(4);
+  b.add(2);
+  b.add(5);
+  b.add(1);
+  b.add(3);
+  b.add(6);
+
+  b.postOrderNumbers();
+
+  assert(b.getNode(1)->post_order_ == 0);
+  assert(b.getNode(3)->post_order_ == 1);
+  assert(b.getNode(2)->post_order_ == 2);
+  assert(b.getNode(6)->post_order_ == 3);
+  assert(b.getNode(5)->post_order_ == 4);
+  assert(b.getNode(4)->post_order_ == 5);
 }
 
 void TestBinaryTreeSize2() {

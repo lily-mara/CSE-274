@@ -9,8 +9,12 @@
 #define BINARYSEARCHTREE_H_
 #include <climits>
 #include <cmath>
+#include <iostream>
 #include "BinaryTree.h"
 #include "utils.h"
+
+using std::endl;
+using std::cout;
 
 namespace ods {
 
@@ -34,6 +38,9 @@ protected:
   using BinaryTree<Node>::nil;
   int n;
   T null;
+  int pre;
+  int in;
+  int post;
   virtual Node *findLast(T x);
   virtual bool addChild(Node *p, Node *u);
   virtual void splice(Node *u);
@@ -41,9 +48,10 @@ protected:
   virtual void rotateRight(Node *u);
   virtual void rotateLeft(Node *u);
   virtual bool add(Node *u);
-  virtual int preOrderNumber(Node*, int);
-  virtual int inOrderNumber(Node*);
-  virtual int postOrderNumbers(Node*);
+  virtual void preOrderNumber(Node*);
+  virtual void inOrderNumber(Node*);
+  virtual void postOrderNumbers(Node*);
+  virtual void print(Node*, int);
 public:
   BinarySearchTree();
   BinarySearchTree(T null);
@@ -58,6 +66,7 @@ public:
   virtual void inOrderNumber();
   virtual void postOrderNumbers();
   virtual Node* getNode(T);
+  virtual void print();
 };
 
 template<class T>
@@ -69,6 +78,24 @@ class BinarySearchTree1: public BinarySearchTree<BSTNode1<T>, T> {
 public:
   BinarySearchTree1();
 };
+
+template<class Node, class T>
+void BinarySearchTree<Node, T>::print() {
+  print(r, 0);
+}
+
+template<class Node, class T>
+void BinarySearchTree<Node, T>::print(Node* u, int x) {
+  if (u == nil) {
+  } else {
+    for (int i = 0; i < x; i++) {
+      cout << "  ";
+    }
+    cout << "Node: " << u->x << " pre: " << u->pre_order_ << endl;
+    print(u->left, x + 1);
+    print(u->right, x + 1);
+  }
+}
 
 /*
  * FIXME: Why doesn't this work?
@@ -98,50 +125,68 @@ Node* BinarySearchTree<Node, T>::getNode(T x) {
 
 template<class Node, class T>
 void BinarySearchTree<Node, T>::preOrderNumber() {
-  preOrderNumber(r, 0);
+  pre = 0;
+  preOrderNumber(r);
 }
 
 template<class Node, class T>
-int BinarySearchTree<Node, T>::preOrderNumber(Node* u, int x) {
-  if (u->left == nil && u->right == nil) {
-    u->pre_order_ = x;
-    return x;
-  } else {
-    u->pre_order_ = preOrderNumber(u->left, x) + preOrderNumber(u->right, x);
-    return u->pre_order_;
+void BinarySearchTree<Node, T>::preOrderNumber(Node* u) {
+  if (u != nil) {
+    u->pre_order_ = pre;
+    pre++;
+    preOrderNumber(u->left);
+    preOrderNumber(u->right);
   }
 }
 
 template<class Node, class T>
 void BinarySearchTree<Node, T>::inOrderNumber() {
+  in = 0;
   inOrderNumber(r);
 }
 
 template<class Node, class T>
-int BinarySearchTree<Node, T>::inOrderNumber(Node* u) {
-
+void BinarySearchTree<Node, T>::inOrderNumber(Node* u) {
+  if (u != nil) {
+    inOrderNumber(u->left);
+    u->in_order_ = in;
+    in++;
+    inOrderNumber(u->right);
+  }
 }
 
 template<class Node, class T>
 void BinarySearchTree<Node, T>::postOrderNumbers() {
+  post = 0;
   postOrderNumbers(r);
 }
 
 template<class Node, class T>
-int BinarySearchTree<Node, T>::postOrderNumbers(Node* u) {
-
+void BinarySearchTree<Node, T>::postOrderNumbers(Node* u) {
+  if (u != nil) {
+    postOrderNumbers(u->left);
+    postOrderNumbers(u->right);
+    u->post_order_ = post;
+    post++;
+  }
 }
 
 template<class Node, class T>
 BinarySearchTree<Node, T>::BinarySearchTree() {
   this->null = (T) NULL;  // won't work for non-primitive types
   n = 0;
+  pre = 0;
+  in = 0;
+  post = 0;
 }
 
 template<class Node, class T>
 BinarySearchTree<Node, T>::BinarySearchTree(T null) {
   this->null = null;
   n = 0;
+  pre = 0;
+  in = 0;
+  post = 0;
 }
 
 template<class Node, class T>
