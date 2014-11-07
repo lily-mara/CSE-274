@@ -32,6 +32,7 @@ protected:
   virtual int size(Node *u);
   virtual int height(Node *u);
   virtual void traverse(Node *u);
+  virtual bool isBalanced(Node *u);
 public:
   virtual ~BinaryTree();
   BinaryTree();
@@ -44,6 +45,9 @@ public:
   virtual void traverse();
   virtual void traverse2();
   virtual void bfTraverse();
+  virtual int height2(Node* u);
+  virtual Node* getRoot();
+  virtual bool isBalanced();
 };
 
 class BTNode1: public BTNode<BTNode1> {
@@ -52,6 +56,48 @@ class BTNode1: public BTNode<BTNode1> {
 template<class Node>
 BinaryTree<Node>::~BinaryTree() {
   clear();
+}
+
+template<class Node>
+Node* BinaryTree<Node>::getRoot() {
+  return r;
+}
+
+template<class Node>
+int BinaryTree<Node>::height2(Node* u) {
+  Node *prev = nil, *next;
+  int n = 0;
+  while (u != nil) {
+    if (prev == u->parent) {
+      n++;
+      if (u->left != nil)
+        next = u->left;
+      else if (u->right != nil)
+        next = u->right;
+      else
+        next = u->parent;
+    } else if (prev == u->left) {
+      if (u->right != nil)
+        next = u->right;
+      else
+        next = u->parent;
+    } else {
+      next = u->parent;
+    }
+    prev = u;
+    u = next;
+  }
+  return n;
+}
+
+template<class Node>
+bool BinaryTree<Node>::isBalanced() {
+  return false;
+}
+
+template<class Node>
+bool BinaryTree<Node>::isBalanced(Node *u) {
+  return false;
 }
 
 template<class Node>
