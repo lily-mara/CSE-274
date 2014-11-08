@@ -53,7 +53,7 @@ protected:
   virtual void inOrderNumber(Node*);
   virtual void postOrderNumbers(Node*);
   virtual void print(Node*, int);
-  virtual DLList<T> *getLE(T, Node*);
+  virtual void getLE(T, Node*, DLList<T>*);
 public:
   BinarySearchTree();
   BinarySearchTree(T null);
@@ -102,31 +102,26 @@ void BinarySearchTree<Node, T>::print(Node* u, int x) {
 
 template<class Node, class T>
 DLList<T> BinarySearchTree<Node, T>::getLE(T x) {
-  DLList<T>* temp = getLE(x, r);
-  DLList<T> l;
-  l.absorb(temp);
-  delete temp;
-  return l;
+  DLList<T> temp;
+  getLE(x, r, &temp);
+  return temp;
 }
 
 template<class Node, class T>
-DLList<T>* BinarySearchTree<Node, T>::getLE(T x, Node* u) {
-  DLList<T> *list = new DLList<T>;
-
+void BinarySearchTree<Node, T>::getLE(T x, Node* u, DLList<T>* list) {
   if (u != nil) {
     int comp = compare(u->x, x);
     if (comp == 1) { // u->x > x
-      list->absorb(getLE(x, u->left));
+      getLE(x, u->left, list);
     } else if (comp == -1) { // u->x < x
       list->add(u->x);
-      list->absorb(getLE(x, u->left));
-      list->absorb(getLE(x, u->right));
+      getLE(x, u->left, list);
+      getLE(x, u->right, list);
     } else { // u->x == x
       list->add(u->x);
-      list->absorb(getLE(x, u->left));
+      getLE(x, u->left, list);
     }
   }
-  return list;
 }
 
 /*
