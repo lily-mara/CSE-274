@@ -37,7 +37,6 @@ public:
   virtual T remove(int i);
   virtual void clear();
   virtual bool contains(T);
-  virtual void absorb(DLList<T>*);
 };
 
 template<class T>
@@ -101,13 +100,6 @@ void DLList<T>::remove(Node *w) {
 template<class T>
 T DLList<T>::get(int i) {
   return getNode(i)->x;
-}
-
-template<class T>
-void DLList<T>::absorb(DLList<T> *l) {
-  for (int i = 0; i < l->size(); i++) {
-    add(l->get(i));
-  }
 }
 
 template<class T>
