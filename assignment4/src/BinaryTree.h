@@ -67,7 +67,7 @@ Node* BinaryTree<Node>::getRoot() {
 template<class Node>
 int BinaryTree<Node>::height2(Node* u) {
   int height = 0, maxHeight = 0;
-  Node *prev = nil, *next;
+  Node *prev = u->parent, *next;
 
   while (u != nil) {
     if (u->right == nil && u->left == nil) {
