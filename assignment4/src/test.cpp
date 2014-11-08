@@ -14,7 +14,7 @@
 using namespace std;
 using namespace ods;
 
-void TestBinaryTreeSize2();
+void TestBinaryTreeHeight2();
 void TestBinaryTreeIsBalanced();
 void TestBinarySearchTreePreOrder();
 void TestBinarySearchTreeInOrder();
@@ -22,7 +22,7 @@ void TestBinarySearchTreePostOrder();
 void TestBinarySearchTreeGetLE();
 
 int main() {
-  TestBinaryTreeSize2();
+  TestBinaryTreeHeight2();
   TestBinaryTreeIsBalanced();
   TestBinarySearchTreePreOrder();
   TestBinarySearchTreeInOrder();
@@ -111,13 +111,16 @@ void TestBinarySearchTreePostOrder() {
   assert(b.getNode(4)->post_order_ == 5);
 }
 
-void TestBinaryTreeSize2() {
+void TestBinaryTreeHeight2() {
   BinarySearchTree<BSTNode1<int>, int> b;
+  int test = 0;
 
   for (int i = 0; i < 10000; i++) {
-    b.add(rand() % 100000);
+    test = rand() % 100000;
+    b.add(test);
   }
 
+  assert(b.height() - b.depth(b.getNode(test)) == b.height2(b.getNode(test)));
   assert(b.height2(b.getRoot()) == b.height());
 }
 
