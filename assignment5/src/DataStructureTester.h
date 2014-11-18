@@ -9,7 +9,7 @@ protected:
   H list;
 
 public:
-  int AddRandom(int);
+  int DoRandomAdd(int);
   int DoSequentialAdd(int, int, int);
   DataStructureTester();
 };
@@ -31,7 +31,7 @@ int DataStructureTester<T>::DoSequentialAdd(int start, int end, int step) {
 }
 
 template<class T>
-int DataStructureTester<T>::AddRandom(int elements_to_add) {
+int DataStructureTester<T>::DoRandomAdd(int elements_to_add) {
   clock_t start_time = clock();
   for (int i = 0; i < elements_to_add; i++) {
     list.add(rand() % INT_MAX);
