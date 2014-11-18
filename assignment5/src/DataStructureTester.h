@@ -11,12 +11,24 @@ protected:
 public:
   int DoRandomAdd(int);
   int DoSequentialAdd(int, int, int);
+  int DoSequentialRemove(int, int, int);
   DataStructureTester();
 };
 
 template<class T>
 DataStructureTester<T>::DataStructureTester() {
   srand(time(0));
+}
+
+template<class T>
+int DataStructureTester<T>::DoSequentialRemove(int start, int end, int step) {
+  clock_t start_time = clock();
+  for (int i = start; i < end; i+=step) {
+    list.remove(i);
+  }
+  clock_t end_time = clock();
+
+  return (end_time - start_time) / (CLOCKS_PER_SEC / 1000);
 }
 
 template<class T>
