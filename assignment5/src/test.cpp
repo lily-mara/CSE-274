@@ -12,6 +12,8 @@ int main() {
   DataStructureTester<BinarySearchTree<BSTNode1<int>, int> > test;
   cout << test.DoRandomAdd(10000) << endl;
   cout << test.DoSequentialAdd(0, 1000000, 100) << endl;
+  cout << test.DoSequentialRemove(0, 1000000, 100) << endl;
+
 
   return 0;
 }
