@@ -5,7 +5,7 @@
 #include "BinarySearchTree.h"
 #include "RedBlackTree.h"
 
-#define TESTS 100
+#define TESTS_TO_RUN 100
 
 using namespace std;
 using namespace ods;
@@ -42,7 +42,7 @@ void TestLinearHashTable() {
 }
 
 void TestAllDataStructures() {
-  for (int i = 0; i < TESTS; i++) {
+  for (int i = 0; i < TESTS_TO_RUN; i++) {
     TestBinarySearchTree();
     TestChainedHashTable();
     TestRedBlackTree();
