@@ -1,3 +1,6 @@
+#ifndef DATA_STRUCTURE_TESTER_H_
+#define DATA_STRUCTURE_TESTER_H_
+
 #include <iostream>
 #include <time.h>
 
@@ -69,3 +72,5 @@ int DataStructureTester<T>::DoRandomAdd(int elements_to_add) {
 }
 
 }
+
+#endif
