@@ -5,7 +5,7 @@
 #include "BinarySearchTree.h"
 #include "RedBlackTree.h"
 
-#define TESTS_TO_RUN 100
+#define TESTS_TO_RUN 1
 
 using namespace std;
 using namespace ods;
@@ -13,10 +13,6 @@ using namespace ods;
 template<class T>
 void TestOneDataStructure(DataStructureTester<T>);
 void TestAllDataStructures();
-void TestBinarySearchTree();
-void TestRedBlackTree();
-void TestLinearHashTable();
-void TestChainedHashTable();
 
 int main() {
   TestAllDataStructures();
@@ -24,29 +20,14 @@ int main() {
   return 0;
 }
 
-void TestBinarySearchTree() {
-  DataStructureTester<BinarySearchTree<BSTNode1<int>, int> > test;
-  TestOneDataStructure(test);
-}
-
-void TestRedBlackTree() {
-
-}
-
-void TestChainedHashTable() {
-
-}
-
-void TestLinearHashTable() {
-
-}
-
 void TestAllDataStructures() {
   for (int i = 0; i < TESTS_TO_RUN; i++) {
-    TestBinarySearchTree();
-    TestChainedHashTable();
-    TestRedBlackTree();
-    TestLinearHashTable();
+    DataStructureTester<BinarySearchTree<BSTNode1<int>, int> > binary_search_tree;
+    TestOneDataStructure(binary_search_tree);
+
+    // TestChainedHashTable();
+    // TestRedBlackTree();
+    // TestLinearHashTable();
   }
 }
 
