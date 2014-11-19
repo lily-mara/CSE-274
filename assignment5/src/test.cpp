@@ -5,8 +5,8 @@
 #include "BinarySearchTree.h"
 #include "RedBlackTree.h"
 
-#define TESTS_TO_RUN 1
-#define ADD_REMOVE_FIND_OPERATIONS 5000
+const int TESTS_TO_RUN = 1;
+const int ADD_REMOVE_FIND_OPERATIONS = 50000;
 
 using namespace std;
 using namespace ods;
