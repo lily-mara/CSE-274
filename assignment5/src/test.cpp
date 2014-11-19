@@ -27,9 +27,14 @@ void TestAllDataStructures() {
     DataStructureTester<BinarySearchTree<BSTNode1<int>, int> > binary_search_tree;
     TestOneDataStructure(binary_search_tree, "Binary Search Tree", i);
 
-    // TestChainedHashTable();
-    // TestRedBlackTree();
-    // TestLinearHashTable();
+    DataStructureTester<ChainedHashTable<int> > chained_hash_table;
+    TestOneDataStructure(chained_hash_table, "Chained Hash Table", i);
+
+    DataStructureTester<LinearHashTable<int> > linear_hash_table;
+    TestOneDataStructure(linear_hash_table, "Linear Hash Table", i);
+
+    DataStructureTester<RedBlackTree<RedBlackNode1<int>, int> > red_black_tree;
+    TestOneDataStructure(red_black_tree, "Red Black Tree", i);
   }
 }
 
