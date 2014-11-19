@@ -25,7 +25,7 @@ public:
 
 template<class T> inline
 int DataStructureTester<T>::TotalTime(int start_time) {
-  return (clock() - start_time);
+  return (clock() - start_time) / (CLOCKS_PER_SEC / 1000);
 }
 
 template<class T>
