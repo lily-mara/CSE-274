@@ -24,7 +24,7 @@ int main() {
 void TestAllDataStructures() {
   for (int i = 0; i < TESTS_TO_RUN; i++) {
     DataStructureTester<BinarySearchTree<BSTNode1<int>, int> > binary_search_tree;
-    TestOneDataStructure(binary_search_tree);
+    TestOneDataStructure(binary_search_tree, "Binary Search Tree");
 
     // TestChainedHashTable();
     // TestRedBlackTree();
@@ -33,7 +33,7 @@ void TestAllDataStructures() {
 }
 
 template<class T>
-void TestOneDataStructure(DataStructureTester<T> tester) {
+void TestOneDataStructure(DataStructureTester<T> tester, char* data_structure_name) {
   tester.DoSequentialAdd(0, ADD_REMOVE_FIND_OPERATIONS, 1);
   tester.DoRandomAdd(ADD_REMOVE_FIND_OPERATIONS);
   tester.DoSequentialFind(0, ADD_REMOVE_FIND_OPERATIONS, 1);
