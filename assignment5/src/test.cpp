@@ -12,7 +12,7 @@ using namespace std;
 using namespace ods;
 
 template<class T>
-void TestOneDataStructure(DataStructureTester<T>, string, int);
+void TestOneDataStructure(DataStructureTester<T>&, string, int);
 void TestAllDataStructures();
 
 int main() {
@@ -39,7 +39,7 @@ void TestAllDataStructures() {
 }
 
 template<class T>
-void TestOneDataStructure(DataStructureTester<T> tester,
+void TestOneDataStructure(DataStructureTester<T>& tester,
     string data_structure_name, int test_number) {
 
   cout << data_structure_name << ","
