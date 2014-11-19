@@ -6,7 +6,7 @@
 #include "RedBlackTree.h"
 
 const int TESTS_TO_RUN = 1;
-const int ADD_REMOVE_FIND_OPERATIONS = 50000;
+const int ADD_REMOVE_FIND_OPERATIONS = 5000;
 
 using namespace std;
 using namespace ods;
