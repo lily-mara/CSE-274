@@ -32,12 +32,24 @@ int DataStructureTester<T>::TotalTime(int start_time) {
 
 template<class T>
 int DataStructureTester<T>::DoRandomRemove(int n) {
-  return 0;
+  clock_t start_time = clock();
+
+  for (int i = 0; i < n; i++) {
+    list.remove(randomNums[i]);
+  }
+
+  return TotalTime(start_time);
 }
 
 template<class T>
 int DataStructureTester<T>::DoRandomFind(int n) {
-  return 0;
+  clock_t start_time = clock();
+
+  for (int i = 0; i < n; i++) {
+    list.find(randomNums[i]);
+  }
+
+  return TotalTime(start_time);
 }
 
 template<class T>
