@@ -13,6 +13,7 @@ protected:
 
 private:
   int TotalTime(int);
+  int* randomNums;
 public:
   int DoRandomAdd(int);
   int DoRandomRemove(int);
@@ -21,6 +22,7 @@ public:
   int DoSequentialRemove(int, int, int);
   int DoSequentialFind(int, int, int);
   DataStructureTester();
+  ~DataStructureTester();
 };
 
 template<class T> inline
@@ -41,6 +43,12 @@ int DataStructureTester<T>::DoRandomFind(int n) {
 template<class T>
 DataStructureTester<T>::DataStructureTester() {
   srand(time(0));
+  randomNums = new int[0];
+}
+
+template<class T>
+DataStructureTester<T>::~DataStructureTester() {
+  delete[] randomNums;
 }
 
 template<class T>
@@ -75,9 +83,15 @@ int DataStructureTester<T>::DoSequentialAdd(int start, int end, int step) {
 
 template<class T>
 int DataStructureTester<T>::DoRandomAdd(int elements_to_add) {
+  delete[] randomNums;
+  randomNums = new int[elements_to_add];
+
   clock_t start_time = clock();
   for (int i = 0; i < elements_to_add; i++) {
-    list.add(rand() % INT_MAX);
+    int random = rand() % INT_MAX;
+
+    list.add(random);
+    randomNums[i] = random;
   }
 
   return TotalTime(start_time);
