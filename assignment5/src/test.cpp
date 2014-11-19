@@ -58,6 +58,11 @@ void TestOneDataStructure(DataStructureTester<T>& tester,
       << tester.DoSequentialRemove(0, ADD_REMOVE_FIND_OPERATIONS, 1) << ","
       << test_number << ",sequential remove" << endl;
 
-  // Do random finds on 100,000 items
-  // Do random removes on 100,000 items
+  cout << data_structure_name << ","
+      << tester.DoRandomFind(ADD_REMOVE_FIND_OPERATIONS) << ","
+      << test_number << ",random find" << endl;
+
+  cout << data_structure_name << ","
+      << tester.DoRandomRemove(ADD_REMOVE_FIND_OPERATIONS) << ","
+      << test_number << ",random remove" << endl;
 }
