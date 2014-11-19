@@ -15,6 +15,8 @@ private:
   int TotalTime(int);
 public:
   int DoRandomAdd(int);
+  int DoRandomRemove(int);
+  int DoRandomFind(int);
   int DoSequentialAdd(int, int, int);
   int DoSequentialRemove(int, int, int);
   int DoSequentialFind(int, int, int);
@@ -24,6 +26,16 @@ public:
 template<class T> inline
 int DataStructureTester<T>::TotalTime(int start_time) {
   return (clock() - start_time) / (CLOCKS_PER_SEC / 1000);
+}
+
+template<class T>
+int DataStructureTester<T>::DoRandomRemove(int n) {
+  return 0;
+}
+
+template<class T>
+int DataStructureTester<T>::DoRandomFind(int n) {
+  return 0;
 }
 
 template<class T>
