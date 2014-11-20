@@ -39,6 +39,8 @@
   n \right)$. In fact, of all of the data structures tested, the
   non-balancing Binary Search Tree had the worst performance scores.
 
+  \subsection{The Numbers}
+
   \begin{center}
     \begin{tabular}{c c}
       Operation & Time (ms) \\
@@ -54,10 +56,34 @@
 
   \section{Red-Black Trees}
 
+  A Red-Black Tree is a kind of Binary Search Tree that balances itself as
+  elements are added to it.
+
   \subsection{The Good}
+
+  The Red-Black Tree is significantly faster than the Binary Search Tree
+  in testing because it is self balancing. This means that as elements are
+  added to the Red-Black Tree, it corrects for the order of the elements
+  automatically in an attempt to keep the complexity as low as possible.
+  The Red Black Tree has a maximum complexity of $\Theta \left( 2 log
+  \left( n \right) \right)$.
 
   \subsection{The Bad}
 
+  \subsection{The Numbers}
+
+  \begin{center}
+    \begin{tabular}{c c}
+      Operation & Time (ms) \\
+      \hline
+      Random Add & 261 \\
+      Random Find & 3 \\
+      Random Remove & 5 \\
+      Sequential Add & 222 \\
+      Sequential Find & 95 \\
+      Sequential Remove & 160 \\
+    \end{tabular}
+  \end{center}
 
   \section{Chained Hash Tables}
 
