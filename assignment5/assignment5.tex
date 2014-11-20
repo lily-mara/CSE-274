@@ -115,7 +115,18 @@
 
   \subsection{The Good}
 
+  Linear Hash Tables are the fastest data structure in all of the tests
+  that I performed. None of the operations took more than $4$ ms. If you
+  needed to operate on a set of numbers in a hurry, Linear Hash Table
+  would be the Data Structure to use.
+
   \subsection{The Bad}
+
+  Linear Hash Table is probably the least space-efficient data structure
+  in this test pool. It requires one contiguous block of memory on the
+  heap $sizeof(T) \times 2 \times n$ bytes large. If you needed to store
+  a massive set of data or serialize the data to a file, this set may not
+  be the best to use.
 
   \subsection{The Numbers}
 
