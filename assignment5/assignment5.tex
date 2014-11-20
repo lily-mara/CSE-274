@@ -1,0 +1,76 @@
+\documentclass{muformallab}
+
+\begin{document}
+
+  \begin{titlepage}
+    \vspace*{\stretch{1.0}}
+    \begin{center}
+      \Large\textbf{Data Structures}\\
+      \large\textit{Some are faster than others}\\
+      \large\text{Nathan J. Mara}\\
+      \large\text{2014-11-19}\\
+      \large\text{CSE 274}
+    \end{center}
+    \vspace*{\stretch{2.0}}
+  \end{titlepage}
+
+  \section{Binary Search Trees}
+
+  A Binary Search Tree is a Binary Tree in which each node is larger than
+  the nodes in its left subtree and smaller than the nodes in its right
+  subtree. It is also sometimes called an Ordered Binary Tree.
+
+  \subsection{The Good}
+
+  In theory, non-balancing Binary Search Trees should perform
+  find/add/remove operations in $\Theta \left( log \left( n \right)
+  \right)$ time when balanced. This is due to the fact that to perform any
+  of these functions, you must visit at most $tree.height$ items, and
+  a balanced Binary Search Tree has height $log \left( n \right)$. When
+  traversing a Binary Search Tree, you can use the ``small on left, large
+  on right'' property of Binary Search trees to compare the expected
+  element to the current one, and it will only have to visit $\Theta
+  \left( log \left( n \right) \right)$ items.
+
+  \subsection{The Bad}
+
+  In practice, it is very easy to create a Binary Search Tree that is
+  unbalanced, and as a result has a complexity of $\Theta \left(
+  n \right)$. In fact, of all of the data structures tested, the
+  non-balancing Binary Search Tree had the worst performance scores.
+
+  \begin{center}
+    \begin{tabular}{c c}
+      Operation & Time (ms) \\
+      \hline
+      Random Add & 83285 \\
+      Random Find & 5 \\
+      Random Remove & 8 \\
+      Sequential Add & 127144 \\
+      Sequential Find & 114062 \\
+      Sequential Remove & 41 \\
+    \end{tabular}
+  \end{center}
+
+  \section{Red-Black Trees}
+
+  \subsection{The Good}
+
+  \subsection{The Bad}
+
+
+  \section{Chained Hash Tables}
+
+  \subsection{The Good}
+
+  \subsection{The Bad}
+
+
+  \section{Linear Hash Tables}
+
+  \subsection{The Good}
+
+  \subsection{The Bad}
+
+
+\end{document}
