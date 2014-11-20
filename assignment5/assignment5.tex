@@ -93,9 +93,26 @@
 
   \section{Chained Hash Tables}
 
+  A Chained Hash Table is a hash table where every element is stored on
+  a secondary ``chain'' rather than the primary backing array.
+
   \subsection{The Good}
 
+  In testing, the Chained Hash Table tested far better than the Binary
+  Search Tree in random add, sequential add and sequential find. It was
+  slower than or equal to the Linear Hash Table in all tests, and
+  comparable to Red-Black Tree in all tests with the exception of being
+  slower in sequential add and sequential find.
+
   \subsection{The Bad}
+
+  The Chained Hash Table is very slow on the sequential add test. It takes
+  over $800$ ms compared to $~200$ ms for Linear Hash Table and Red Black
+  Tree. When new elements are added to the Chained Hash Table, it has to
+  not only resize its backing array, but create more ``chain'' objects and
+  fill those. Adding objects to a Chained Hash Table has best case
+  complexity $\Theta \left( hash \left( n \right) \right)$ and worst case
+  complexity $\Theta \left( n \right)$.
 
   \subsection{The Numbers}
 
