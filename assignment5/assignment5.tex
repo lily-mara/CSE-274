@@ -100,12 +100,12 @@
   \subsection{The Bad}
 
   The Chained Hash Table is very slow on the sequential add test. It takes
-  over $800$ ms compared to $~200$ ms for Linear Hash Table and Red Black
-  Tree. When new elements are added to the Chained Hash Table, it has to
-  not only resize its backing array, but create more ``chain'' objects and
-  fill those. Adding objects to a Chained Hash Table has best case
-  complexity $\Theta \left( hash \left( n \right) \right)$ and worst case
-  complexity $\Theta \left( n \right)$.
+  over $42$ ms compared to $~3$ ms for Linear Hash Table. When new
+  elements are added to the Chained Hash Table, it has to not only resize
+  its backing array, but create more ``chain'' objects and fill those.
+  Adding objects to a Chained Hash Table has best case complexity $\Theta
+  \left( hash \left( n \right) \right)$ and worst case complexity $\Theta
+  \left( n \right)$.
 
   \subsection{The Numbers}
 
