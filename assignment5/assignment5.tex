@@ -2,6 +2,21 @@
 
 \begin{document}
 
+  \newcommand{\results}[6]{
+    \begin{center}
+      \begin{tabular}{c c}
+        Operation & Time (ms) \\
+        \hline
+        Random Add & #1 \\
+        Random Find & #2 \\
+        Random Remove & #3 \\
+        Sequential Add & #4 \\
+        Sequential Find & #5 \\
+        Sequential Remove & #6 \\
+      \end{tabular}
+    \end{center}
+  }
+
   \begin{titlepage}
     \vspace*{\stretch{1.0}}
     \begin{center}
@@ -41,18 +56,7 @@
 
   \subsection{The Numbers}
 
-  \begin{center}
-    \begin{tabular}{c c}
-      Operation & Time (ms) \\
-      \hline
-      Random Add & 83285 \\
-      Random Find & 5 \\
-      Random Remove & 8 \\
-      Sequential Add & 127144 \\
-      Sequential Find & 114062 \\
-      Sequential Remove & 41 \\
-    \end{tabular}
-  \end{center}
+  \results{4164.25}{0.25}{0.4}{6357.2}{5703.1}{2.05}
 
   \section{Red-Black Trees}
 
@@ -78,18 +82,7 @@
 
   \subsection{The Numbers}
 
-  \begin{center}
-    \begin{tabular}{c c}
-      Operation & Time (ms) \\
-      \hline
-      Random Add & 261 \\
-      Random Find & 3 \\
-      Random Remove & 5 \\
-      Sequential Add & 222 \\
-      Sequential Find & 95 \\
-      Sequential Remove & 160 \\
-    \end{tabular}
-  \end{center}
+  \results {13.05} {0.15} {0.25} {11.1} {4.75} {8}
 
   \section{Chained Hash Tables}
 
@@ -116,18 +109,7 @@
 
   \subsection{The Numbers}
 
-  \begin{center}
-    \begin{tabular}{c c}
-      Operation & Time (ms) \\
-      \hline
-      Random Add & 199 \\
-      Random Find & 12 \\
-      Random Remove & 8 \\
-      Sequential Add & 848 \\
-      Sequential Find & 184 \\
-      Sequential Remove & 149 \\
-    \end{tabular}
-  \end{center}
+  \results {9.95} {0.6} {0.4} {42.4} {9.2} {7.45}
 
   \section{Linear Hash Tables}
 
@@ -137,17 +119,6 @@
 
   \subsection{The Numbers}
 
-  \begin{center}
-    \begin{tabular}{c c}
-      Operation & Time (ms) \\
-      \hline
-      Random Add & 32 \\
-      Random Find & 11 \\
-      Random Remove & 9 \\
-      Sequential Add & 72 \\
-      Sequential Find & 19 \\
-      Sequential Remove & 57 \\
-    \end{tabular}
-  \end{center}
+  \results {1.6} {0.55} {0.45} {3.6} {0.95} {2.85}
 
 \end{document}
