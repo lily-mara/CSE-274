@@ -1,0 +1,144 @@
+\documentclass{muformallab}
+
+\begin{document}
+
+  \newcommand{\results}[6]{
+    \begin{center}
+      \begin{tabular}{c c}
+        Operation & Time (ms) \\
+        \hline
+        Random Add & #1 \\
+        Random Find & #2 \\
+        Random Remove & #3 \\
+        Sequential Add & #4 \\
+        Sequential Find & #5 \\
+        Sequential Remove & #6 \\
+      \end{tabular}
+    \end{center}
+  }
+
+  \begin{titlepage}
+    \vspace*{\stretch{1.0}}
+    \begin{center}
+      \Large\textbf{Data Structures}\\
+      \large\textit{Some are faster than others}\\
+      \large\text{Nathan J. Mara}\\
+      \large\text{2014-11-19}\\
+      \large\text{CSE 274}
+    \end{center}
+    \vspace*{\stretch{2.0}}
+  \end{titlepage}
+
+  \section{Binary Search Trees}
+
+  A Binary Search Tree is a Binary Tree in which each node is larger than
+  the nodes in its left subtree and smaller than the nodes in its right
+  subtree. It is also sometimes called an Ordered Binary Tree.
+
+  \subsection{The Good}
+
+  In theory, non-balancing Binary Search Trees should perform
+  find/add/remove operations in $\Theta \left( log \left( n \right)
+  \right)$ time when balanced. This is due to the fact that to perform any
+  of these functions, you must visit at most $tree.height$ items, and
+  a balanced Binary Search Tree has height $log \left( n \right)$. When
+  traversing a Binary Search Tree, you can use the ``small on left, large
+  on right'' property of Binary Search trees to compare the expected
+  element to the current one, and it will only have to visit $\Theta
+  \left( log \left( n \right) \right)$ items.
+
+  \subsection{The Bad}
+
+  In practice, it is very easy to create a Binary Search Tree that is
+  unbalanced, and as a result has a complexity of $\Theta \left(
+  n \right)$. In fact, of all of the data structures tested, the
+  non-balancing Binary Search Tree had the worst performance scores.
+
+  \subsection{The Numbers}
+
+  \results{4164.25}{0.25}{0.4}{6357.2}{5703.1}{2.05}
+
+  \section{Red-Black Trees}
+
+  A Red-Black Tree is a kind of Binary Search Tree that balances itself as
+  elements are added to it.
+
+  \subsection{The Good}
+
+  The Red-Black Tree is significantly faster than the Binary Search Tree
+  in testing because it is self balancing. This means that as elements are
+  added to the Red-Black Tree, it corrects for the order of the elements
+  automatically in an attempt to keep the complexity as low as possible.
+  The Red Black Tree has a maximum complexity of $\Theta \left( 2 log
+  \left( n \right) \right)$.
+
+  \subsection{The Bad}
+
+  Red-Black Trees under-perform both types of Hash Tables tested here in
+  adding $50,000$ random elements. This is probably due to the reshaping
+  of the tree that the self-balancing algorithm does. Red-Black trees take
+  up more space than non-balancing Binary Search Trees because each node
+  also has a \textit{color} property associated with it.
+
+  \subsection{The Numbers}
+
+  \results {13.05} {0.15} {0.25} {11.1} {4.75} {8}
+
+  \subsection{Red-Black Tree vs 2-4 Tree}
+
+  A Red-Black Tree is sometimes said to correspond to a 2-4 Tree, as each
+  set of one black node \& two red children can represent one node in
+  a 2-4 Tree.  Then, each of these new nodes can have between 2 and
+  4 children.  When the $pushBlack(u)$ operation is performed, the
+  internal 2-4 Tree grows taller by one level. Conversely, the
+  $pullBlack(u)$ operation shrinks the 2-4 Tree by one level.
+
+  \section{Chained Hash Tables}
+
+  A Chained Hash Table is a hash table where every element is stored on
+  a secondary ``chain'' rather than the primary backing array.
+
+  \subsection{The Good}
+
+  In testing, the Chained Hash Table tested far better than the Binary
+  Search Tree in random add, sequential add and sequential find. It was
+  slower than or equal to the Linear Hash Table in all tests, and
+  comparable to Red-Black Tree in all tests with the exception of being
+  slower in sequential add and sequential find.
+
+  \subsection{The Bad}
+
+  The Chained Hash Table is very slow on the sequential add test. It takes
+  over $42$ ms compared to $~3$ ms for Linear Hash Table. When new
+  elements are added to the Chained Hash Table, it has to not only resize
+  its backing array, but create more ``chain'' objects and fill those.
+  Adding objects to a Chained Hash Table has best case complexity $\Theta
+  \left( hash \left( n \right) \right)$ and worst case complexity $\Theta
+  \left( n \right)$.
+
+  \subsection{The Numbers}
+
+  \results {9.95} {0.6} {0.4} {42.4} {9.2} {7.45}
+
+  \section{Linear Hash Tables}
+
+  \subsection{The Good}
+
+  Linear Hash Tables are the fastest data structure in all of the tests
+  that I performed. None of the operations took more than $4$ ms. If you
+  needed to operate on a set of numbers in a hurry, Linear Hash Table
+  would be the Data Structure to use.
+
+  \subsection{The Bad}
+
+  Linear Hash Table is probably the least space-efficient data structure
+  in this test pool. It requires one contiguous block of memory on the
+  heap $sizeof(T) \times 2 \times n$ bytes large. If you needed to store
+  a massive set of data or serialize the data to a file, this set may not
+  be the best to use.
+
+  \subsection{The Numbers}
+
+  \results {1.6} {0.55} {0.45} {3.6} {0.95} {2.85}
+
+\end{document}
